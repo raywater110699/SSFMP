@@ -406,13 +406,11 @@ import net.ucanaccess.jdbc.JackcessOpenerInterface;
     	if((JButton) e.getSource() == search1 ) //資料庫搜尋
 		{	
     		//每次先清空choice選項
-			
 			chc7.removeAll();
 			chc8.removeAll();
 			chc9.removeAll();
 			chc10.removeAll();
 			chc11.removeAll();
-			
 			
 			amount7.setText("");
 			amount8.setText("");
@@ -427,12 +425,7 @@ import net.ucanaccess.jdbc.JackcessOpenerInterface;
 				Statement smt0 = DB_connect0.createStatement();
 		    	ResultSet rs0 = smt0.executeQuery("SELECT * from 工作表2 WHERE Disease ='"+keyword0+"'");
 		    	rs0.next();
-		    	
-		    	drug_ch1 = rs0.getString(1);
-		    	drug_ch2 = rs0.getString(2);	
-		    	drug_ch3 = rs0.getString(3);	
-		    	drug_ch4 = rs0.getString(6);	
-		    	drug_ch5 = rs0.getString(4);	
+		    	getDrug(rs0);
 		    	
 		    	//非null 才加入choice
 		    	if(drug_ch1 != null){
@@ -564,15 +557,9 @@ import net.ucanaccess.jdbc.JackcessOpenerInterface;
 		}
 		
 		if((JButton) e.getSource() == submit ){	  //提交
-			frm.remove(main_frame);
-			frm.add(text_frame);
-			frm.revalidate();
-			frm.repaint();
-			text_frame.setVisible(true);  
-	        frm.setVisible(true); 
-	        System.out.print("submit");
-	        
-	       if(advice_2.getText().isEmpty() == false ){   //判斷是否為空值 有東西的話先清空
+			Window_change(main_frame, text_frame);
+			
+			if(advice_2.getText().isEmpty() == false ){   //判斷是否為空值 有東西的話先清空
 	    	   advice_2.setText(""); 
 	       }
 	        
@@ -587,13 +574,7 @@ import net.ucanaccess.jdbc.JackcessOpenerInterface;
 		}
 		
 		if((JButton) e.getSource()== submit_return){   //提交頁面返回
-			frm.remove(text_frame);
-			frm.add(enter_frame);
-			frm.revalidate();
-			frm.repaint();
-			enter_frame.setVisible(true);  
-	        frm.setVisible(true); 
-	        System.out.print("submit");
+			Window_change(text_frame, enter_frame);
 		}
 		
 		if((JButton) e.getSource() == search){   // 搜尋 
@@ -617,11 +598,7 @@ import net.ucanaccess.jdbc.JackcessOpenerInterface;
 		    	ResultSet rs = smt.executeQuery("SELECT * from 工作表2 WHERE Disease ='"+keyword+"'");
 		    	rs.next();
 		    	s = keyword;
-		    	drug_ch1 = rs.getString(1);
-		    	drug_ch2 = rs.getString(2);
-		    	drug_ch3 = rs.getString(3);	
-		    	drug_ch4 = rs.getString(6);	
-		    	drug_ch5 = rs.getString(4);
+		    	getDrug(rs);
 
 		    	
 		    	//非null 才加入choice
@@ -686,6 +663,18 @@ import net.ucanaccess.jdbc.JackcessOpenerInterface;
 		frm.repaint();
 		change_frame.setVisible(true);  
         frm.setVisible(true); 
+    }
+    
+    public void getDrug(ResultSet RS) throws SQLException {		//獲得藥物string
+    	drug_ch1 = RS.getString(1);
+    	drug_ch2 = RS.getString(2);
+    	drug_ch3 = RS.getString(3);	
+    	drug_ch4 = RS.getString(6);	
+    	drug_ch5 = RS.getString(4);
+    }
+    
+    public void Clean() {
+    	
     }
     
 	@Override
