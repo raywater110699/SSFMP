@@ -423,8 +423,8 @@ import net.ucanaccess.jdbc.JackcessOpenerInterface;
 			//連接資料庫做choice選項
 			keyword0 = DB_search.getText();
 			try {
-				connect_to_DB.ConnectDB();
-				Statement smt0 = connect_to_DB.ConnectDB().createStatement();
+				Connection DB_connect = connect_to_DB.ConnectDB();
+				Statement smt0 = DB_connect.createStatement();
 		    	ResultSet rs0 = smt0.executeQuery("SELECT * from 工作表2 WHERE Disease ='"+keyword0+"'");
 		    	rs0.next();
 		    	
