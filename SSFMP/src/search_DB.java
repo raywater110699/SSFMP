@@ -60,6 +60,7 @@ public class search_DB {
 	                    e.setKeyCode(KeyEvent.VK_ENTER);
 	                }
 	            }
+	            
 	            if (e.getKeyCode() == KeyEvent.VK_ENTER || e.getKeyCode() == KeyEvent.VK_UP || e.getKeyCode() == KeyEvent.VK_DOWN) {
 	                e.setSource(cbInput);
 	                cbInput.dispatchEvent(e);
@@ -68,6 +69,7 @@ public class search_DB {
 	                    cbInput.setPopupVisible(false);
 	                }
 	            }
+	            
 	            if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
 	                cbInput.setPopupVisible(false);
 	            }

@@ -13,9 +13,13 @@ import javax.swing.WindowConstants;
 
 public class win2 extends JFrame 
 {
-	static String[] Disease_name = new String [150];
-	static String drugname[] = new String[200];
-	static String drug_ch1, drug_ch2, drug_ch3, drug_ch4, drug_ch5 = "";
+	String[] Disease_name = new String [150];
+	String drugname[] = new String[200];
+	String drug_ch1, drug_ch2, drug_ch3, drug_ch4, drug_ch5 = "";
+	String Name[] = new String[8];
+	int count = 0;
+	int non_null=0;
+	
 	private static final long serialVersionUID = 1L;
 	
 	public win2(String s) 
@@ -33,11 +37,7 @@ public class win2 extends JFrame
 	    	Statement stmt = connect_to_DB.ConnectDB().createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE); 
 	    	ResultSet rset = stmt.executeQuery("SELECT * from 工作表1 WHERE Disease ='"+s+"'"); 
 	    	ResultSetMetaData rsmd = rset.getMetaData(); 
-	    	
 	    	int columnCount = rsmd.getColumnCount();
-	    	String Name[] = new String[8];
-	    	int count = 0;
-	    	int non_null=0;
 	    	int E[]=new int[columnCount+1];
 	    	
 	    	while(rset.next()) {	    		
@@ -68,12 +68,10 @@ public class win2 extends JFrame
 	    			if(E[n]==1) {
 	    				JLabel L = new JLabel(drugname[n-1]);
 	    				pn.add(L);
-	    				//System.out.print("　,　"+drugname[n-1]);
 	    			}
 	    			else if(n==0){
 	    				JLabel L = new JLabel(drugname[0]);
-	    				pn.add(L);
-	    				//System.out.print(drugname[0]);			    				
+	    				pn.add(L);    				
 	    			}
 	    		}
 	    	
@@ -96,7 +94,6 @@ public class win2 extends JFrame
 	    				else {
 	    					JLabel L = new JLabel(rs.getString(col));
 	    					pn.add(L);
-	    					//System.out.print(rs.getString(col));
 	    				}
 	    			}		
 	    			System.out.print("\n");

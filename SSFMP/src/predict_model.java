@@ -35,11 +35,7 @@ public class predict_model {
 			
 			for (InputField inputField : inputFields) {
 				FieldName inputFieldName = inputField.getName();
-				
-				//Object SAFETYrawValue = SAFETYmap.get(inputFieldName.getValue());	//抓安全率資料
 				Object DRUGrawValue = DRUGmap.get(inputFieldName.getValue());	//抓藥物資料
-				
-				//FieldValue SAFETYinputFieldValue = inputField.prepare(SAFETYrawValue);
 				FieldValue DRUGinputFieldValue = inputField.prepare(DRUGrawValue);
 				System.out.println(inputFieldName);
 				System.out.println(DRUGinputFieldValue);

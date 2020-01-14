@@ -19,7 +19,7 @@ import org.jpmml.evaluator.TargetField;
 
 public class ModelLoading {
 	
-	public static float input(String drug1,String drug2,String drug3,String drug4,String drug5,float ml1,float ml2,float ml3,float ml4,float ml5) throws Exception{
+	public static float input(information IF) throws Exception{
 		// TODO Auto-generated method stub
 		
 		float zero=0;
@@ -34,11 +34,10 @@ public class ModelLoading {
 		String  pathxml=System.getProperty("mydir")+"\\DrugModel4.pmml";	//pmml模型檔位置
 		
 		//設定input
-		//Map<String, Double>  mapD=new HashMap<String, Double>();
-		Map<String, Float>  mapF=new HashMap<String, Float>(1000);
+		Map<String, Float>  mapF=new HashMap<String, Float>(30);
 		
 		//輸入值初始化
-		mapF.put("ACEI", zero);
+		mapF.put("ACEI", zero);	
 		mapF.put("ARB", zero);
 		mapF.put("Statins", zero);
 		mapF.put("CCB", zero);
@@ -155,11 +154,11 @@ public class ModelLoading {
 		mapF.put("Safetypercent", zero);
 		
 		//接收值導入
-		mapF.put(drug1, ml1);
-		mapF.put(drug2, ml2);
-		mapF.put(drug3, ml3);
-		mapF.put(drug4, ml4);
-		mapF.put(drug5, ml5);
+		mapF.put(IF.D1, IF.M1);
+		mapF.put(IF.D2, IF.M2);
+		mapF.put(IF.D3, IF.M3);
+		mapF.put(IF.D4, IF.M4);
+		mapF.put(IF.D5, IF.M5);
 		
 		float resultvalue = predict_model.predict(mapF,pathxml);	//導入模型訓練
 		return resultvalue;	//回傳預測值
