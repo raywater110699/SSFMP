@@ -467,39 +467,19 @@ import net.ucanaccess.jdbc.JackcessOpenerInterface;
     	
 
 		if((JButton) e.getSource() == prescription ){	//按鈕進入視窗
-			frm.remove(enter_frame);
-			frm.add(main_frame);
-			frm.revalidate();
-			frm.repaint();
-			main_frame.setVisible(true);  
-	        frm.setVisible(true); 
+			Window_change(enter_frame, main_frame);
 	        if(advice.getText().isEmpty()==false){
 	        	advice.setText("");
 	        }
 		}
 		if((JButton) e.getSource() == DB ){  //按鈕進入視窗	
-			frm.remove(enter_frame);
-			frm.add(db_frame);
-			frm.revalidate();
-			frm.repaint();
-			db_frame.setVisible(true);  
-	        frm.setVisible(true);  
+			Window_change(enter_frame, db_frame);
 		}
 		if((JButton) e.getSource() == back1 ){	 //返回
-			frm.remove(main_frame);
-			frm.add(enter_frame);
-			frm.revalidate();
-			frm.repaint();
-			enter_frame.setVisible(true);  
-	        frm.setVisible(true); 
+			Window_change(main_frame, enter_frame);
 		}
 		if((JButton) e.getSource() == db_back ){	 //返回	
-			frm.remove(db_frame);
-			frm.add(enter_frame);
-			frm.revalidate();
-			frm.repaint();
-			enter_frame.setVisible(true);  
-	        frm.setVisible(true); 
+			Window_change(db_frame, enter_frame);
 		}
 		
 		if((JButton) e.getSource() == confirm ){	//確定
@@ -648,8 +628,7 @@ import net.ucanaccess.jdbc.JackcessOpenerInterface;
 		    	if(drug_ch1 != null){
 		    		Add_selection1(drug_ch1);
 		    	}
-		    	
-		    	
+		 
 		    	if(drug_ch2 != null){
 		    		Add_selection1(drug_ch2);
 		    	}
@@ -684,7 +663,7 @@ import net.ucanaccess.jdbc.JackcessOpenerInterface;
 		
     }
     
-    public void Add_selection0(String drug) {
+    public void Add_selection0(String drug) {	//增加藥物選項
     	chc7.add(drug);
 		chc8.add(drug);
 		chc9.add(drug);
@@ -700,8 +679,13 @@ import net.ucanaccess.jdbc.JackcessOpenerInterface;
 		chc5.add(drug);
     }
     
-    public void Window_change() {
-    	
+    public void Window_change(JPanel original_frame, JPanel change_frame) {		//切換視窗
+    	frm.remove(original_frame);
+		frm.add(change_frame);
+		frm.revalidate();
+		frm.repaint();
+		change_frame.setVisible(true);  
+        frm.setVisible(true); 
     }
     
 	@Override
