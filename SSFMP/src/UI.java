@@ -15,7 +15,7 @@ import java.text.SimpleDateFormat;
 
 import net.ucanaccess.jdbc.JackcessOpenerInterface;
 
- public class UI extends JFrame implements ActionListener,ItemListener{
+ public class UI extends JFrame implements ActionListener, ItemListener{
 	 
 	private static final long serialVersionUID = -3781841269916429345L;
 
@@ -87,7 +87,7 @@ import net.ucanaccess.jdbc.JackcessOpenerInterface;
 	float ml4;
 	float ml5;
 	float predict=0;
-	String s="";
+	String s = "";
 	static int label_x = 20;
 	static int label_y = 90;
 	static int label_width = 40;
@@ -114,9 +114,6 @@ import net.ucanaccess.jdbc.JackcessOpenerInterface;
 	
     public static void main(String[] args) throws Exception, SQLException, IOException {
     	
-    	
-    		    	
-    	
          UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
          
          frm.setTitle("醫用處方箋輔助系統");
@@ -124,15 +121,14 @@ import net.ucanaccess.jdbc.JackcessOpenerInterface;
          frm.setBounds(200, 200, 700, 600);
  
          ArrayList<String> items = new ArrayList<String>();
-         String [] locales = {"CKD", "TB", "DM", "HT", "PTH", "RA",
-         						"VZ","PU","PH","PD","PPH","OA","OM",
-         						"SCI","NPC","LE","DILI","DPB","OI","TS",
-         						"ADHD","Migranie","Epilepsy","Tetanus","CP",
-         						"AK","pleurisy","gout","CB","VF","Panic",
+         String [] locales = {"CKD", "TB", "DM", "HT", "PTH", "RA", 
+         						"VZ", "PU", "PH", "PD", "PPH", "OA", "OM", 
+         						"SCI", "NPC", "LE", "DILI", "DPB", "OI", "TS", 
+         						"ADHD", "Migranie", "Epilepsy", "Tetanus", "CP", 
+         						"AK", "pleurisy", "gout", "CB", "VF", "Panic", 
          						"Gastroenteritis"};
          
-         for (int i = 0; i < locales.length; i++) 
-         {
+         for (int i = 0; i < locales.length; i++){
              String item = locales[i];         //.getDisplayName();  
              items.add(item);
          }
@@ -142,7 +138,7 @@ import net.ucanaccess.jdbc.JackcessOpenerInterface;
          main_frame.setLayout(null);
          
          JLabel dis = new JLabel("疾病");
-         dis.setBounds(20,20,80,20);         
+         dis.setBounds(20, 20, 80, 20);         
          main_frame.add(dis);
          
          txtInput.setBounds(60, 20, 120, 20);   //查詢欄      
@@ -231,9 +227,8 @@ import net.ucanaccess.jdbc.JackcessOpenerInterface;
 	     now.setBounds(300, 20, 80, 20);
 	     main_frame.add(now);
 	     
-	     
-	         
-	     modify.setBounds(560, 12, 100,45);
+	          
+	     modify.setBounds(560, 12, 100, 45);
 	     modify.addActionListener(frm);
 	     main_frame.add(modify); 
 	     
@@ -260,7 +255,7 @@ import net.ucanaccess.jdbc.JackcessOpenerInterface;
          JLabel label_icon = new JLabel(icon);
          frm.setIconImage(image);
          
-       //資料庫頁面
+         //資料庫頁面
          JLabel DIS = new JLabel("疾病");
          JLabel DISCODE = new JLabel("疾病碼");
          JLabel d6 = new JLabel("藥物1");
@@ -298,15 +293,15 @@ import net.ucanaccess.jdbc.JackcessOpenerInterface;
          
          DIS.setBounds(DB_label_x, DB_label_y, DB_label_width, DB_label_height); //疾病
          disease.setBounds(DB_label_x+90, DB_label_y, DB_label_width, DB_label_height);
-         DISCODE.setBounds(DB_label_x, DB_label_y+40, DB_label_width,DB_label_height); //疾病碼
+         DISCODE.setBounds(DB_label_x, DB_label_y+40, DB_label_width, DB_label_height); //疾病碼
          disease_code.setBounds(DB_label_x+90, DB_label_y+40, DB_label_width, DB_label_height);
          
     
          d6.setBounds(DB_label_x, DB_label_y+95, DB_label_width, DB_label_height);	//藥物1
-         d7.setBounds(DB_label_x, DB_label_y+125, DB_label_width,DB_label_height); //藥物2
-         d8.setBounds(DB_label_x, DB_label_y+155,DB_label_width,DB_label_height); //藥物3
-         d9.setBounds(DB_label_x,200,DB_label_width,DB_label_height); //藥物4
-         d10.setBounds(DB_label_x, DB_label_y+215, DB_label_width,DB_label_height); //藥物5
+         d7.setBounds(DB_label_x, DB_label_y+125, DB_label_width, DB_label_height); //藥物2
+         d8.setBounds(DB_label_x, DB_label_y+155, DB_label_width, DB_label_height); //藥物3
+         d9.setBounds(DB_label_x, DB_label_y+185, DB_label_width, DB_label_height); //藥物4
+         d10.setBounds(DB_label_x, DB_label_y+215, DB_label_width, DB_label_height); //藥物5
          
          chc6.setBounds(400, 20, 120, 20);
          chc7.setBounds(DB_label_x+90, DB_label_y+95, DB_label_width, DB_label_height);
@@ -315,19 +310,19 @@ import net.ucanaccess.jdbc.JackcessOpenerInterface;
          chc10.setBounds(DB_label_x+90, DB_label_y+185, DB_label_width, DB_label_height);
          
 	     amount6.setBounds(DB_label_x+190, DB_label_y+95, DB_label_width, DB_label_height);
-	     amount7.setBounds(DB_label_x+190, DB_label_y+125,DB_label_width,DB_label_height);
-	     amount8.setBounds(DB_label_x+190, DB_label_y+155, DB_label_width,DB_label_height);
-	     amount9.setBounds(DB_label_x+190,DB_label_y+185,DB_label_width,DB_label_height);
-	     amount10.setBounds(DB_label_x+190, DB_label_y+215, DB_label_width,DB_label_height);
+	     amount7.setBounds(DB_label_x+190, DB_label_y+125, DB_label_width, DB_label_height);
+	     amount8.setBounds(DB_label_x+190, DB_label_y+155, DB_label_width, DB_label_height);
+	     amount9.setBounds(DB_label_x+190, DB_label_y+185, DB_label_width, DB_label_height);
+	     amount10.setBounds(DB_label_x+190, DB_label_y+215, DB_label_width, DB_label_height);
 	     
 	     l6.setBounds(DB_label_x+290, DB_label_y+95, DB_label_width, DB_label_height);
 	     l7.setBounds(DB_label_x+290, DB_label_y+125, DB_label_width, DB_label_height);
-	     l8.setBounds(DB_label_x+290, DB_label_y+155, DB_label_width,DB_label_height);
-	     l9.setBounds(DB_label_x+290, DB_label_y+185, DB_label_width,DB_label_height);
-	     l10.setBounds(DB_label_x+290, DB_label_y+215, DB_label_width,DB_label_height);
+	     l8.setBounds(DB_label_x+290, DB_label_y+155, DB_label_width, DB_label_height);
+	     l9.setBounds(DB_label_x+290, DB_label_y+185, DB_label_width, DB_label_height);
+	     l10.setBounds(DB_label_x+290, DB_label_y+215, DB_label_width, DB_label_height);
 	     
 	     chc11.setBounds(DB_label_x+90, DB_label_y+215, DB_label_width, DB_label_height);
-	     amount11.setBounds(DB_label_x+190, DB_label_y+245, DB_label_width,DB_label_height);
+	     amount11.setBounds(DB_label_x+190, DB_label_y+245, DB_label_width, DB_label_height);
 	     
 	    
 	     db_frame.add(chc7);
@@ -346,7 +341,7 @@ import net.ucanaccess.jdbc.JackcessOpenerInterface;
          add.setBounds(450, 20, 185, 60);
          delete.setBounds(450, 100, 185, 60);
          search1.setBounds(240, 20, 80, 60);
-         enter.setBounds(450,170,80, 80); //確定
+         enter.setBounds(450, 170, 80, 80); //確定
          db_back.setBounds(555, 170, 80, 80); //返回
          db_back.addActionListener(frm);
          add.addActionListener(frm);
@@ -380,9 +375,9 @@ import net.ucanaccess.jdbc.JackcessOpenerInterface;
      	 enter_frame.setLayout(null);
          prescription.addActionListener(frm);
          DB.addActionListener(frm);
-	     label_icon.setBounds(230, 80, 230,230);
-	     prescription.setBounds(350, 360, 200,50);
-	     DB.setBounds(130, 360, 200,50);
+	     label_icon.setBounds(230, 80, 230, 230);
+	     prescription.setBounds(350, 360, 200, 50);
+	     DB.setBounds(130, 360, 200, 50);
 	     enter_frame.add(label_icon);
 	     enter_frame.add(prescription);
 	     enter_frame.add(DB);
@@ -406,9 +401,7 @@ import net.ucanaccess.jdbc.JackcessOpenerInterface;
          text_frame.add(submit_return);
      }
     
-    
-    
-    
+    //事件處理
     public void actionPerformed(ActionEvent e) {
     	if((JButton) e.getSource() == search1 ) //資料庫搜尋
 		{	
@@ -427,7 +420,7 @@ import net.ucanaccess.jdbc.JackcessOpenerInterface;
 			amount10.setText("");
 			amount11.setText("");
 			
-			//接資料庫做choice選項
+			//連接資料庫做choice選項
 			keyword0 = DB_search.getText();
 			try {
 				connect_to_DB.ConnectDB();
@@ -493,10 +486,8 @@ import net.ucanaccess.jdbc.JackcessOpenerInterface;
 	    		chc9.add("null");
 	    		chc10.add("null");
 	    		chc11.add("null");
-		    
-	    		
-	    		
-			} catch (SQLException e3) {
+			} 
+			catch (SQLException e3) {
 				// TODO Auto-generated catch block
 				e3.printStackTrace();
 			}
@@ -504,8 +495,7 @@ import net.ucanaccess.jdbc.JackcessOpenerInterface;
 		}
     	
 
-		if((JButton) e.getSource() == prescription ) //按鈕進入視窗
-		{			
+		if((JButton) e.getSource() == prescription ){	//按鈕進入視窗
 			frm.remove(enter_frame);
 			frm.add(main_frame);
 			frm.revalidate();
@@ -517,8 +507,7 @@ import net.ucanaccess.jdbc.JackcessOpenerInterface;
 	        	advice.setText("");
 	        }
 		}
-		if((JButton) e.getSource() == DB ) //按鈕進入視窗
-		{			
+		if((JButton) e.getSource() == DB ){  //按鈕進入視窗	
 			frm.remove(enter_frame);
 			frm.add(db_frame);
 			frm.revalidate();
@@ -526,8 +515,7 @@ import net.ucanaccess.jdbc.JackcessOpenerInterface;
 			db_frame.setVisible(true);  
 	        frm.setVisible(true);  
 		}
-		if((JButton) e.getSource() == back1 ) //返回
-		{			
+		if((JButton) e.getSource() == back1 ){	 //返回
 			frm.remove(main_frame);
 			frm.add(enter_frame);
 			frm.revalidate();
@@ -536,8 +524,7 @@ import net.ucanaccess.jdbc.JackcessOpenerInterface;
 	        frm.setVisible(true); 
 	        System.out.print("back");
 		}
-		if((JButton) e.getSource() == db_back ) //返回
-		{			
+		if((JButton) e.getSource() == db_back ){	 //返回	
 			frm.remove(db_frame);
 			frm.add(enter_frame);
 			frm.revalidate();
@@ -547,8 +534,7 @@ import net.ucanaccess.jdbc.JackcessOpenerInterface;
 	        System.out.print("back");
 		}
 		
-		if((JButton) e.getSource() == confirm )//確定
-		{	
+		if((JButton) e.getSource() == confirm ){	//確定
 			if(amount.getText().isEmpty()==true) 
 	    	{
 	    		amount.setText("0"); 
@@ -590,52 +576,41 @@ import net.ucanaccess.jdbc.JackcessOpenerInterface;
 	    	DRUG4 =drug4;
 	    	DRUG5 =drug5;
 	    	
-	    	 ml1 = Float.parseFloat(drug1_amount);	//藥量轉浮點數
-	    	 ml2 = Float.parseFloat(drug2_amount);
-	    	 ml3 = Float.parseFloat(drug3_amount);
-	    	 ml4 = Float.parseFloat(drug4_amount);
-	    	 ml5 = Float.parseFloat(drug5_amount);
-	    	
-	 
+	    	ml1 = Float.parseFloat(drug1_amount);	//藥量轉浮點數
+	    	ml2 = Float.parseFloat(drug2_amount);
+	    	ml3 = Float.parseFloat(drug3_amount);
+	    	ml4 = Float.parseFloat(drug4_amount);
+	    	ml5 = Float.parseFloat(drug5_amount);
 	    	
 	    	advice.append("\n"+"---------------------------------------");
 	    	advice.append("\n"+"疾病: "+txt_d);
-	    	if (drug1!= "null")
-	    	{
+	    	
+	    	if (drug1!= "null"){
 	    		advice.append("\n"+"藥物1: "+drug1+" "+drug1_amount+"mg");
 	    	}
-	    	if (drug2!= "null")
-	    	{
+	    	if (drug2!= "null"){
 	    		advice.append("\n"+"藥物2: "+drug2+" "+drug2_amount+"mg");
 	    	}
-	    	if (drug3!= "null")
-	    	{
+	    	if (drug3!= "null"){
 	    		advice.append("\n"+"藥物3: "+drug3+" "+drug3_amount+"mg");
 	    	}
-	    	if (drug4!= "null")
-	    	{
+	    	if (drug4!= "null"){
 	    		advice.append("\n"+"藥物4: "+drug4+" "+drug4_amount+"mg");
 	    	}
-	    	if (drug5!= "null")
-	    	{
+	    	if (drug5!= "null"){
 	    		advice.append("\n"+"藥物5: "+drug5+" "+drug5_amount+"mg");
 	    	}
-	    	
-	    	chc6.add(txt_d);	    	
-	    	
+	    	chc6.add(txt_d);		    	
 		}
 		
 		
-		if((JButton) e.getSource() == suggest ) // 建議用藥組合
-		{
-			
+		if((JButton) e.getSource() == suggest ){   // 建議用藥組合
 			window2 cc = new window2(s);  //開新視窗
 		}
 		
-		if((JButton) e.getSource() == evaluation ) // 評估
-		{
+		if((JButton) e.getSource() == evaluation ){   // 評估
 			try {		//傳值到pmml預測
-				 information info = new information(DRUG1,DRUG2,DRUG3,DRUG4,DRUG5,ml1,ml2,ml3,ml4,ml5);
+				 information info = new information(DRUG1, DRUG2, DRUG3, DRUG4, DRUG5, ml1, ml2, ml3, ml4, ml5);
 				 predict = ModelLoading.input(info);
 				 predict = ran.nextInt(100);
 			} catch (Exception e3) {
@@ -646,8 +621,7 @@ import net.ucanaccess.jdbc.JackcessOpenerInterface;
 			
 		}
 		
-		if((JButton) e.getSource() == submit ) //提交
-		{			
+		if((JButton) e.getSource() == submit ){	  //提交
 			frm.remove(main_frame);
 			frm.add(text_frame);
 			frm.revalidate();
@@ -656,8 +630,7 @@ import net.ucanaccess.jdbc.JackcessOpenerInterface;
 	        frm.setVisible(true); 
 	        System.out.print("submit");
 	        
-	       if(advice_2.getText().isEmpty() == false ) //判斷是否為空值 有東西的話先清空
-	       {
+	       if(advice_2.getText().isEmpty() == false ){   //判斷是否為空值 有東西的話先清空
 	    	   advice_2.setText(""); 
 	       }
 	        
@@ -671,8 +644,7 @@ import net.ucanaccess.jdbc.JackcessOpenerInterface;
 	       
 		}
 		
-		if((JButton) e.getSource()== submit_return) //提交頁面返回
-		{
+		if((JButton) e.getSource()== submit_return){   //提交頁面返回
 			frm.remove(text_frame);
 			frm.add(enter_frame);
 			frm.revalidate();
@@ -682,8 +654,7 @@ import net.ucanaccess.jdbc.JackcessOpenerInterface;
 	        System.out.print("submit");
 		}
 		
-		if((JButton) e.getSource() == search) // 搜尋 			
-		{
+		if((JButton) e.getSource() == search){   // 搜尋 
 			//每次先清空choice選項
 			chc.removeAll();
 			chc2.removeAll();
@@ -718,8 +689,7 @@ import net.ucanaccess.jdbc.JackcessOpenerInterface;
 		    	System.out.println(drug_ch5);
 		    	
 		    	//非null 才加入choice
-		    	if(drug_ch1 != null)
-		    	{
+		    	if(drug_ch1 != null){
 		    		chc.add(drug_ch1);
 		    		chc2.add(drug_ch1);
 		    		chc3.add(drug_ch1);
@@ -728,8 +698,7 @@ import net.ucanaccess.jdbc.JackcessOpenerInterface;
 		    	}
 		    	
 		    	
-		    	if(drug_ch2 != null)
-		    	{
+		    	if(drug_ch2 != null){
 		    		chc.add(drug_ch2);
 		    		chc2.add(drug_ch2);
 		    		chc3.add(drug_ch2);
@@ -737,8 +706,7 @@ import net.ucanaccess.jdbc.JackcessOpenerInterface;
 		    		chc5.add(drug_ch2);
 		    	}
 		    	
-		    	if(drug_ch3 != null)
-		    	{
+		    	if(drug_ch3 != null){
 		    		chc.add(drug_ch3);
 		    		chc2.add(drug_ch3);
 		    		chc3.add(drug_ch3);
@@ -746,8 +714,7 @@ import net.ucanaccess.jdbc.JackcessOpenerInterface;
 		    		chc5.add(drug_ch3);
 		    	}
 		    	
-		    	if(drug_ch4 != null)
-		    	{
+		    	if(drug_ch4 != null){
 		    		chc.add(drug_ch4);
 		    		chc2.add(drug_ch4);
 		    		chc3.add(drug_ch4);
@@ -755,8 +722,7 @@ import net.ucanaccess.jdbc.JackcessOpenerInterface;
 		    		chc5.add(drug_ch4);
 		    	}
 		    	
-		    	if(drug_ch5 != null)
-		    	{
+		    	if(drug_ch5 != null){
 		    		chc.add(drug_ch5);
 		    		chc2.add(drug_ch5);
 		    		chc3.add(drug_ch5);
@@ -770,8 +736,7 @@ import net.ucanaccess.jdbc.JackcessOpenerInterface;
 	    		chc4.add("null");
 	    		chc5.add("null");
 	    		
-	    		
-		    	
+	    			
 			} catch (SQLException e3) {
 				// TODO Auto-generated catch block
 				e3.printStackTrace();
@@ -785,11 +750,8 @@ import net.ucanaccess.jdbc.JackcessOpenerInterface;
 		}
 		
 		
-		
     }
     
-
-
 
 	@Override
 	public void itemStateChanged(ItemEvent e) {

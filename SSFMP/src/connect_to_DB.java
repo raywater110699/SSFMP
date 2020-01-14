@@ -27,17 +27,14 @@ public static Connection ConnectDB() throws SQLException {
        
         String  pathxml=System.getProperty("mydir")+"\\DRUGG.accdb";	//DB¦ì¸m
         
-    	try 
-    	{
+    	try{
     		Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
-    	}catch(ClassNotFoundException e) 
-    	{
+    	}
+    	catch(ClassNotFoundException e){
     		System.out.println("Driver loading failed!");
     	}
     	Connection con = DriverManager.getConnection("jdbc:ucanaccess://"+pathxml);
     	return con;
     }
-
-
 
 }

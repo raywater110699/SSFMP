@@ -11,8 +11,7 @@ import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import javax.swing.WindowConstants;
 
-public class window2 extends JFrame 
-{
+public class window2 extends JFrame{
 	String[] Disease_name = new String [150];
 	String drugname[] = new String[200];
 	String drug_ch1, drug_ch2, drug_ch3, drug_ch4, drug_ch5 = "";
@@ -22,8 +21,7 @@ public class window2 extends JFrame
 	
 	private static final long serialVersionUID = 1L;
 	
-	public window2(String s) 
-	 {
+	public window2(String s){
 		super("建議用藥組合"); 
 		setBounds(900, 200, 300, 200); 
 		setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE); 
@@ -40,12 +38,11 @@ public class window2 extends JFrame
 	    	int columnCount = rsmd.getColumnCount();
 	    	int E[]=new int[columnCount+1];
 	    	
-	    	while(rset.next()) {	    		
+	    	while( rset.next() ){	    		
 	    		non_null=0;
-	    			for(int i=1; i<=columnCount; i++)
-	    			{    		
+	    			for(int i=1; i<=columnCount; i++){    		
 	    				if(i!=1) {
-	    					if(rset.getInt(i) != 0) {
+	    					if(rset.getInt(i) != 0){
 	    							Name[non_null] = rsmd.getColumnName(i);
 	    							E[i]=1;
 	    							drugname[i-1] = Name[non_null];		
@@ -58,13 +55,15 @@ public class window2 extends JFrame
 	    				}
 	    			}
 	    			count++;
-	    	}		
-	    	while(count>=0 ) {
+	    	}
+	    	
+	    	while(count>=0){
 	    		count--;
 	    		rset.previous();
 	    	}
+	    	
 	    	rset.next();
-	    	for(int n=0; n<=columnCount-1; n++) {	
+	    	for(int n=0; n<=columnCount-1; n++){	
 	    			if(E[n]==1) {
 	    				JLabel L = new JLabel(drugname[n-1]);
 	    				pn.add(L);
@@ -77,21 +76,20 @@ public class window2 extends JFrame
 	    	
 	    	System.out.print("\n");
 	    	
-	    	while(rs.next()) {			    		
-	    			for(int col=1; col<=columnCount-1; col++)
-	    			{
-	    				if(col!=1) {
-	    					if(rs.getInt(col) != 0) {	    					
+	    	while( rs.next() ){			    		
+	    			for(int col=1; col<=columnCount-1; col++){
+	    				if(col!=1){
+	    					if(rs.getInt(col) != 0){	    					
 	    							Disease_name[col] = rs.getString(col);
 	    							JLabel L = new JLabel(Disease_name[col]);
 	    							pn.add(L);
 	    					}
-	    					else if(E[col]==1) {
+	    					else if(E[col]==1){
 	    						JLabel L = new JLabel("0");
 	    						pn.add(L);
 	    					}
 	    				}
-	    				else {
+	    				else{
 	    					JLabel L = new JLabel(rs.getString(col));
 	    					pn.add(L);
 	    				}

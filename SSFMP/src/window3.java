@@ -57,14 +57,13 @@ public class window3 extends JFrame implements ActionListener{
 		
 	}
 	
-	public void actionPerformed(ActionEvent e) {	// "我知道了！"的觸發
-		if((JButton) e.getSource()== confirm)
-		{
+	public void actionPerformed(ActionEvent e){	// "我知道了！"的觸發
+		if((JButton) e.getSource()== confirm){
 			dispose();
 		}
 	}
 	
-	public void setfont(JLabel label, Container panel) {
+	public void setfont(JLabel label, Container panel){
 		label.setFont(new Font("標楷體",Font.BOLD,20));
 		label.setHorizontalAlignment(SwingConstants.CENTER);
 		panel.add(label); 
