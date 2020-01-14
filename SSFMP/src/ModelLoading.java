@@ -31,22 +31,12 @@ public class ModelLoading {
 	        if(path == null){
 	            System.setProperty("mydir", System.getProperty("user.dir"));
 	        }
-	        //System.out.print(System.getProperty("mydir"));
+	
 	        
 		String  pathxml=System.getProperty("mydir")+"\\DrugModel4.pmml";	//pmml模型檔位置
-		//System.out.println(pathxml);
 		
 		//設定input
 		//Map<String, Double>  mapD=new HashMap<String, Double>();
-		
-		/*
-		System.out.println(ml1);
-		System.out.println(ml2);
-		System.out.println(ml3);
-		System.out.println(ml4);
-		System.out.println(ml5);
-		*/
-		
 		Map<String, Float>  mapF=new HashMap<String, Float>(1000);
 		
 		//輸入值初始化
@@ -87,7 +77,7 @@ public class ModelLoading {
 		mapF.put("Riociguat", (float) 0);
 		mapF.put("Tadalafil", (float) 0);
 		mapF.put("Iloprost", (float) 0);
-		mapF.put("?Sildenafil", (float) 0);
+		mapF.put("Sildenafil", (float) 0);
 		mapF.put("Biperiden", (float) 0);
 		mapF.put("Selegiline", (float) 0);
 		mapF.put("Entacapone", (float) 0);
@@ -101,7 +91,7 @@ public class ModelLoading {
 		mapF.put("Piroxicam", (float) 0);
 		mapF.put("Ceftibuten", (float) 0);
 		mapF.put("Cefuroxime", (float) 0);
-		mapF.put("?Imipenem", (float) 0);
+		mapF.put("Imipenem", (float) 0);
 		mapF.put("Meropenem", (float) 0);
 		mapF.put("Dulcolax", (float) 0);
 		mapF.put("AFGF", (float) 0);
@@ -149,7 +139,7 @@ public class ModelLoading {
 		mapF.put("LABA", (float) 0);
 		mapF.put("Mexiletine", (float) 0);
 		mapF.put("Amiodarone", (float) 0);
-		mapF.put("Sotalol?", (float) 0);
+		mapF.put("Sotalol", (float) 0);
 		mapF.put("Propranol", (float) 0);
 		mapF.put("Zolpidem", (float) 0);
 		mapF.put("Biogen", (float) 0);
@@ -163,7 +153,7 @@ public class ModelLoading {
 		mapF.put("Colchicin", (float) 0);
 		mapF.put("Amoxicilla", (float) 0);
 		mapF.put("Concerta", (float) 0);
-		mapF.put("Cisplatinum?", (float) 0);
+		mapF.put("Cisplatinum", (float) 0);
 		mapF.put("Safetypercent", (float) 0);
 		
 		//接收值導入
@@ -203,7 +193,6 @@ public class ModelLoading {
 				FieldValue DRUGinputFieldValue = inputField.prepare(DRUGrawValue);
 				System.out.println(inputFieldName);
 				System.out.println(DRUGinputFieldValue);
-				//arguments.put(inputFieldName, SAFETYinputFieldValue);	
 				arguments.put(inputFieldName, DRUGinputFieldValue);
 				}
 			

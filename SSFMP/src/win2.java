@@ -25,11 +25,11 @@ public class win2 extends JFrame
 		setVisible(true); 
 		Container pn = getContentPane(); 
 		try {
-			MAIN.ConnectDB();
-			Statement smt = MAIN.ConnectDB().createStatement();
+			connect_to_DB.ConnectDB();
+			Statement smt = connect_to_DB.ConnectDB().createStatement();
 	    	ResultSet rs = smt.executeQuery("SELECT * from 工作表1 WHERE Disease ='"+s+"'");
 	    	
-	    	Statement stmt = MAIN.ConnectDB().createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE); 
+	    	Statement stmt = connect_to_DB.ConnectDB().createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE); 
 	    	ResultSet rset = stmt.executeQuery("SELECT * from 工作表1 WHERE Disease ='"+s+"'"); 
 	    	ResultSetMetaData rsmd = rset.getMetaData(); 
 	    	

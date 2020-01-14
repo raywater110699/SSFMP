@@ -32,7 +32,6 @@ import net.ucanaccess.jdbc.JackcessOpenerInterface;
 	static JButton submit = new JButton("提交");
 	static TextArea advice_2 = new TextArea(""); //提交後頁面用
 	static JButton submit_r = new JButton("返回首頁");
-	//static JScrollPane scroll = new JScrollPane(advice);
 	
  
 	static JButton back1 = new JButton("返回");//主系統返回首頁
@@ -100,6 +99,7 @@ import net.ucanaccess.jdbc.JackcessOpenerInterface;
 	static JTable  jt = new JTable();
 	static TextField text1 = new TextField();		//資料庫搜尋欄
 	static String keyword0;
+	static Random ran = new Random();
 	
     public static void main(String[] args) throws Exception, SQLException, IOException {
     	
@@ -123,7 +123,6 @@ import net.ucanaccess.jdbc.JackcessOpenerInterface;
          for (int i = 0; i < locales.length; i++) 
          {
              String item = locales[i];         //.getDisplayName();  
-             //System.out.println(item);
              items.add(item);
          }
          
@@ -218,7 +217,6 @@ import net.ucanaccess.jdbc.JackcessOpenerInterface;
 	     frame.add(now);
 	     
 	     chc6.setBounds(400, 20, 120, 20);
-	     //frame.add(chc6);
 	         
 	     modify.setBounds(560, 12, 100,45);
 	     modify.addActionListener(frm);
@@ -250,7 +248,6 @@ import net.ucanaccess.jdbc.JackcessOpenerInterface;
        //資料庫頁面
          JLabel DIS = new JLabel("疾病");
          JLabel DISCODE = new JLabel("疾病碼");
-         //JLabel SP = new JLabel("安全率");
          JLabel d6 = new JLabel("藥物1");
          JLabel d7 = new JLabel("藥物2");
          JLabel d8 = new JLabel("藥物3");
@@ -391,26 +388,7 @@ import net.ucanaccess.jdbc.JackcessOpenerInterface;
      }
     
     
-    public static Connection ConnectDB() throws SQLException {
-    	
-    	//動態配置DB位置
-    	String path = System.getProperty("mydir");
-        if(path == null){
-            System.setProperty("mydir", System.getProperty("user.dir"));
-        }
-        //System.out.print(System.getProperty("mydir"));        
-        String  pathxml=System.getProperty("mydir")+"\\DRUGG.accdb";	//DB位置
-        
-    	try 
-    	{
-    		Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
-    	}catch(ClassNotFoundException e) 
-    	{
-    		System.out.println("Driver loading failed!");
-    	}
-    	Connection con = DriverManager.getConnection("jdbc:ucanaccess://"+pathxml);
-    	return con;
-    }
+    
     
     public void actionPerformed(ActionEvent e) {
     	if((JButton) e.getSource() == search1 ) //資料庫搜尋
@@ -433,8 +411,8 @@ import net.ucanaccess.jdbc.JackcessOpenerInterface;
 			//接資料庫做choice選項
 			keyword0 = text1.getText();
 			try {
-				ConnectDB();
-				Statement smt0 = ConnectDB().createStatement();
+				connect_to_DB.ConnectDB();
+				Statement smt0 = connect_to_DB.ConnectDB().createStatement();
 		    	ResultSet rs0 = smt0.executeQuery("SELECT * from 工作表2 WHERE Disease ='"+keyword0+"'");
 		    	rs0.next();
 		    	
@@ -639,6 +617,7 @@ import net.ucanaccess.jdbc.JackcessOpenerInterface;
 		{
 			try {		//傳值到pmml預測
 				 predict = ModelLoading.input(DRUG1,DRUG2,DRUG3,DRUG4,DRUG5,ml1,ml2,ml3,ml4,ml5);
+				 predict = ran.nextInt(100);
 			} catch (Exception e3) {
 				// TODO Auto-generated catch block
 				e3.printStackTrace();
@@ -700,8 +679,8 @@ import net.ucanaccess.jdbc.JackcessOpenerInterface;
 			//接資料庫做choice選項
 			keyword = txtInput.getText();
 			try {
-				ConnectDB();
-				Statement smt = ConnectDB().createStatement();
+				connect_to_DB.ConnectDB();
+				Statement smt = connect_to_DB.ConnectDB().createStatement();
 		    	ResultSet rs = smt.executeQuery("SELECT * from 工作表2 WHERE Disease ='"+keyword+"'");
 		    	rs.next();
 		    	s = keyword;
@@ -789,11 +768,7 @@ import net.ucanaccess.jdbc.JackcessOpenerInterface;
 		
     }
     
-    
-    public void itemStateChanged(ItemEvent e) {
-    	//String drug1 = chc.getSelectedItem();
-    	//System.out.println("藥物1:"+drug1);
-    }
+
         
     
     //搜尋欄判定的部分
@@ -886,6 +861,13 @@ import net.ucanaccess.jdbc.JackcessOpenerInterface;
          txtInput.setLayout(new BorderLayout());
          txtInput.add(cbInput, BorderLayout.SOUTH);
      }
+
+
+	@Override
+	public void itemStateChanged(ItemEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
  }
  
 

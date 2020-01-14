@@ -15,6 +15,7 @@ import javax.swing.WindowConstants;
 public class win3 extends JFrame implements ActionListener{
 	
 	static JButton confirm = new JButton("我知道了！");
+	
 	public win3(float predict) {
 		super("評估視窗"); 
 		setBounds(900, 200, 300, 200); 
@@ -23,65 +24,33 @@ public class win3 extends JFrame implements ActionListener{
 		setBackground(Color.white); 
 		
 		//容器 
-		Container pn = getContentPane(); 
+		Container pn = getContentPane();
 		pn.setLayout(new BorderLayout());
 		pn.add(confirm, BorderLayout.PAGE_END);
 		confirm.setSize(80,60);
-		//設定成FlowLayout 
-		//FlowLayout fy = new FlowLayout(); 
-		//pn.setLayout(fy); 
 		
 		confirm.addActionListener(this);
-		confirm.setBackground(Color.white); 
+		confirm.setBackground(Color.white);
+		
 		//依照predict值設定評估文字
-		
-		/*
-		if(predict>=84) {
-			JLabel l1 = new JLabel("目前用藥安全");
-			l1.setFont(new Font("標楷體",Font.BOLD,16));
-			l1.setHorizontalAlignment(SwingConstants.CENTER);
-			pn.add(l1); 
-			setContentPane(pn);				
-		}
-		
-		if(predict<84) {
-			JLabel l1 = new JLabel("目前用藥危險");
-			l1.setFont(new Font("標楷體",Font.BOLD,16));
-			l1.setHorizontalAlignment(SwingConstants.CENTER);
-			pn.add(l1); 
-			setContentPane(pn);
-		}*/
-		
-		if( predict>=0 && predict<25 ) {
+		if(predict>=0 && predict<25) {
 			JLabel l1 = new JLabel("目前用藥異常，請三思！！！");
-			l1.setFont(new Font("標楷體",Font.BOLD,20));
-			l1.setHorizontalAlignment(SwingConstants.CENTER);
-			pn.add(l1); 
-			setContentPane(pn);				
+			setfont(l1,pn);
 		}
 		
-		if( predict>=25 && predict<50) {
-			JLabel l1 = new JLabel("目前用藥在合理範圍內，但存在一定風險！！");
-			l1.setFont(new Font("標楷體",Font.BOLD,20));
-			l1.setHorizontalAlignment(SwingConstants.CENTER);
-			pn.add(l1); 
-			setContentPane(pn);				
+		if(predict>=25 && predict<50) {
+			JLabel l1 = new JLabel("目前用藥略微異常，請再確認！");
+			setfont(l1,pn);			
 		}
 		
 		if(predict>=50 && predict<75) {
-			JLabel l1 = new JLabel("目前用藥略微異常，請再確認！");
-			l1.setFont(new Font("標楷體",Font.BOLD,20));
-			l1.setHorizontalAlignment(SwingConstants.CENTER);
-			pn.add(l1); 
-			setContentPane(pn);				
+			JLabel l1 = new JLabel("目前用藥在合理範圍內，但存在一定風險！！");
+			setfont(l1,pn);				
 		}
 		
 		if(predict>=75) {
 			JLabel l1 = new JLabel("目前用藥在合理範圍內～");
-			l1.setFont(new Font("標楷體",Font.BOLD,20));
-			l1.setHorizontalAlignment(SwingConstants.CENTER);
-			pn.add(l1); 
-			setContentPane(pn);				
+			setfont(l1,pn);				
 		}
 		
 		
@@ -92,6 +61,13 @@ public class win3 extends JFrame implements ActionListener{
 		{
 			dispose();
 		}
+	}
+	
+	public void setfont(JLabel label, Container panel) {
+		label.setFont(new Font("標楷體",Font.BOLD,20));
+		label.setHorizontalAlignment(SwingConstants.CENTER);
+		panel.add(label); 
+		setContentPane(panel);
 	}
 	
 }
