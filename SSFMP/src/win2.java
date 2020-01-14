@@ -17,6 +17,7 @@ public class win2 extends JFrame
 	static String drugname[] = new String[200];
 	static String drug_ch1, drug_ch2, drug_ch3, drug_ch4, drug_ch5 = "";
 	private static final long serialVersionUID = 1L;
+	
 	public win2(String s) 
 	 {
 		super("建議用藥組合"); 
@@ -86,12 +87,10 @@ public class win2 extends JFrame
 	    							Disease_name[col] = rs.getString(col);
 	    							JLabel L = new JLabel(Disease_name[col]);
 	    							pn.add(L);
-	    							//System.out.print("　,　"+Disease_name[col]);	
 	    					}
 	    					else if(E[col]==1) {
 	    						JLabel L = new JLabel("0");
 	    						pn.add(L);
-	    						//System.out.print("　,　　0");
 	    					}
 	    				}
 	    				else {

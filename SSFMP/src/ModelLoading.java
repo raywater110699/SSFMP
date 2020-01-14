@@ -163,59 +163,10 @@ public class ModelLoading {
 		mapF.put(drug4, (float) ml4);
 		mapF.put(drug5, (float) ml5);
 		
-		float resultvalue = predict(mapF,pathxml);	//導入模型訓練
+		float resultvalue = predict_model.predict(mapF,pathxml);	//導入模型訓練
 		return resultvalue;	//回傳預測值
 	}
 	
-	public static float predict(Map<String, Float> DRUGmap,String  pathxml)throws Exception {
-		//模型導入
-		PMML pmml;		
-		File file = new File(pathxml);
-		float primitiveValue = -1;	//result值
-		
-		InputStream inputStream = new FileInputStream(file);
-		try (InputStream is = inputStream) {
-			pmml = org.jpmml.model.PMMLUtil.unmarshal(is);
-			ModelEvaluatorFactory modelEvaluatorFactory = ModelEvaluatorFactory.newInstance();
-			ModelEvaluator<?> modelEvaluator = modelEvaluatorFactory.newModelEvaluator(pmml);
-			Evaluator evaluator = (Evaluator) modelEvaluator;
-			List<InputField> inputFields = evaluator.getInputFields();		//從map中抓數據
-			
-			Map<FieldName, FieldValue> arguments = new LinkedHashMap<>();
-			
-			for (InputField inputField : inputFields) {
-				FieldName inputFieldName = inputField.getName();
-				
-				//Object SAFETYrawValue = SAFETYmap.get(inputFieldName.getValue());	//抓安全率資料
-				Object DRUGrawValue = DRUGmap.get(inputFieldName.getValue());	//抓藥物資料
-				
-				//FieldValue SAFETYinputFieldValue = inputField.prepare(SAFETYrawValue);
-				FieldValue DRUGinputFieldValue = inputField.prepare(DRUGrawValue);
-				System.out.println(inputFieldName);
-				System.out.println(DRUGinputFieldValue);
-				arguments.put(inputFieldName, DRUGinputFieldValue);
-				}
-			
-			Map<FieldName, ?> results = evaluator.evaluate(arguments);
-			List<TargetField> targetFields = evaluator.getTargetFields();
-			
-			//輸出
-			for (TargetField targetField : targetFields) {
-				FieldName targetFieldName = targetField.getName();
-				Object targetFieldValue = results.get(targetFieldName);
-				System.err.println("target: " + targetFieldName.getValue()+ " value: " + targetFieldValue);
-				if (targetFieldValue instanceof Computable) {
-		            Computable computable = (Computable) targetFieldValue;
-		            primitiveValue = (float)computable.getResult();
-		        }
-				System.out.print(primitiveValue);
-			}
-			
-		}
-		return primitiveValue;
-	}
 	
-	
-	
-	
+
 }
