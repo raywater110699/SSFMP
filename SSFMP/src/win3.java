@@ -36,22 +36,23 @@ public class win3 extends JFrame implements ActionListener{
 		if(predict>=0 && predict<25) {
 			JLabel l1 = new JLabel("目前用藥異常，請三思！！！");
 			setfont(l1,pn);
+			return;
 		}
 		
 		if(predict>=25 && predict<50) {
 			JLabel l1 = new JLabel("目前用藥略微異常，請再確認！");
 			setfont(l1,pn);			
+			return;
 		}
 		
 		if(predict>=50 && predict<75) {
 			JLabel l1 = new JLabel("目前用藥在合理範圍內，但存在一定風險！！");
 			setfont(l1,pn);				
+			return;
 		}
 		
-		if(predict>=75) {
-			JLabel l1 = new JLabel("目前用藥在合理範圍內～");
-			setfont(l1,pn);				
-		}
+		JLabel l1 = new JLabel("目前用藥在合理範圍內～");
+		setfont(l1,pn);				
 		
 		
 	}
