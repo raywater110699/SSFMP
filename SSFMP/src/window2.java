@@ -36,15 +36,15 @@ public class window2 extends JFrame{
 	    	ResultSet rset = stmt.executeQuery("SELECT * from 工作表1 WHERE Disease ='"+s+"'"); 
 	    	ResultSetMetaData rsmd = rset.getMetaData(); 
 	    	int columnCount = rsmd.getColumnCount();
-	    	int E[]=new int[columnCount+1];
+	    	int E[] = new int[columnCount+1];
 	    	
 	    	while( rset.next() ){	    		
-	    		non_null=0;
+	    		non_null = 0;
 	    			for(int i=1; i<=columnCount; i++){    		
 	    				if(i!=1) {
 	    					if(rset.getInt(i) != 0){
 	    							Name[non_null] = rsmd.getColumnName(i);
-	    							E[i]=1;
+	    							E[i] = 1;
 	    							drugname[i-1] = Name[non_null];		
 	    							non_null++;
 	    					}

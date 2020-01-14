@@ -423,8 +423,8 @@ import net.ucanaccess.jdbc.JackcessOpenerInterface;
 			//連接資料庫做choice選項
 			keyword0 = DB_search.getText();
 			try {
-				Connection DB_connect = connect_to_DB.ConnectDB();
-				Statement smt0 = DB_connect.createStatement();
+				Connection DB_connect0 = connect_to_DB.ConnectDB();
+				Statement smt0 = DB_connect0.createStatement();
 		    	ResultSet rs0 = smt0.executeQuery("SELECT * from 工作表2 WHERE Disease ='"+keyword0+"'");
 		    	rs0.next();
 		    	
@@ -435,57 +435,28 @@ import net.ucanaccess.jdbc.JackcessOpenerInterface;
 		    	drug_ch5 = rs0.getString(4);	
 		    	
 		    	//非null 才加入choice
-		    	if(drug_ch1 != null)
-		    	{
-		    		chc7.add(drug_ch1);
-		    		chc8.add(drug_ch1);
-		    		chc9.add(drug_ch1);
-		    		chc10.add(drug_ch1);
-		    		chc11.add(drug_ch1);
+		    	if(drug_ch1 != null){
+		    		Add_selection0(drug_ch1);
 		    	}
 		    	
-		    	
-		    	if(drug_ch2 != null)
-		    	{
-		    		chc7.add(drug_ch2);
-		    		chc8.add(drug_ch2);
-		    		chc9.add(drug_ch2);
-		    		chc10.add(drug_ch2);
-		    		chc11.add(drug_ch2);
+		    	if(drug_ch2 != null){
+		    		Add_selection0(drug_ch2);
 		    	}
 		    	
-		    	if(drug_ch3 != null)
-		    	{
-		    		chc7.add(drug_ch3);
-		    		chc8.add(drug_ch3);
-		    		chc9.add(drug_ch3);
-		    		chc10.add(drug_ch3);
-		    		chc11.add(drug_ch3);
+		    	if(drug_ch3 != null){
+		    		Add_selection0(drug_ch3);
 		    	}
 		    	
-		    	if(drug_ch4 != null)
-		    	{
-		    		chc7.add(drug_ch4);
-		    		chc8.add(drug_ch4);
-		    		chc9.add(drug_ch4);
-		    		chc10.add(drug_ch4);
-		    		chc11.add(drug_ch4);
+		    	if(drug_ch4 != null){
+		    		Add_selection0(drug_ch4);
 		    	}
 		    	
-		    	if(drug_ch5 != null)
-		    	{
-		    		chc7.add(drug_ch5);
-		    		chc8.add(drug_ch5);
-		    		chc9.add(drug_ch5);
-		    		chc10.add(drug_ch5);
-		    		chc11.add(drug_ch5);
+		    	if(drug_ch5 != null){
+		    		Add_selection0(drug_ch5);
 		    	}
 		    	
-		    	chc7.add("null");
-	    		chc8.add("null");
-	    		chc9.add("null");
-	    		chc10.add("null");
-	    		chc11.add("null");
+		    	Add_selection0("null");
+		    	
 			} 
 			catch (SQLException e3) {
 				// TODO Auto-generated catch block
@@ -502,8 +473,7 @@ import net.ucanaccess.jdbc.JackcessOpenerInterface;
 			frm.repaint();
 			main_frame.setVisible(true);  
 	        frm.setVisible(true); 
-	        if(advice.getText().isEmpty()==false)
-	        {
+	        if(advice.getText().isEmpty()==false){
 	        	advice.setText("");
 	        }
 		}
@@ -522,7 +492,6 @@ import net.ucanaccess.jdbc.JackcessOpenerInterface;
 			frm.repaint();
 			enter_frame.setVisible(true);  
 	        frm.setVisible(true); 
-	        System.out.print("back");
 		}
 		if((JButton) e.getSource() == db_back ){	 //返回	
 			frm.remove(db_frame);
@@ -531,39 +500,32 @@ import net.ucanaccess.jdbc.JackcessOpenerInterface;
 			frm.repaint();
 			enter_frame.setVisible(true);  
 	        frm.setVisible(true); 
-	        System.out.print("back");
 		}
 		
 		if((JButton) e.getSource() == confirm ){	//確定
-			if(amount.getText().isEmpty()==true) 
-	    	{
+			if(amount.getText().isEmpty()==true){
 	    		amount.setText("0"); 
 	    	}
-	    	if(amount2.getText().isEmpty()==true) 
-	    	{
+	    	if(amount2.getText().isEmpty()==true){
 	    		amount2.setText("0"); 
 	    	}
-	    	if(amount3.getText().isEmpty()==true) 
-	    	{
+	    	if(amount3.getText().isEmpty()==true){
 	    		amount3.setText("0"); 
 	    	}
-	    	if(amount4.getText().isEmpty()==true) 
-	    	{
+	    	if(amount4.getText().isEmpty()==true){
 	    		amount4.setText("0"); 
 	    	}
-	    	
-	    	if(amount5.getText().isEmpty()==true) 
-	    	{
+	    	if(amount5.getText().isEmpty()==true) {
 	    		amount5.setText("0"); 
 	    	}
 	
 	    	
 			String drug1_amount = amount.getText();
-			String drug1 = chc.getSelectedItem();
 	    	String drug2_amount = amount2.getText();
 	    	String drug3_amount = amount3.getText();
 	    	String drug4_amount = amount4.getText();
 	    	String drug5_amount = amount5.getText();
+	    	String drug1 = chc.getSelectedItem();
 	    	String drug2 = chc2.getSelectedItem();
 	    	String drug3 = chc3.getSelectedItem();
 	    	String drug4 = chc4.getSelectedItem();
@@ -670,71 +632,41 @@ import net.ucanaccess.jdbc.JackcessOpenerInterface;
 			//接資料庫做choice選項
 			keyword = txtInput.getText();
 			try {
-				connect_to_DB.ConnectDB();
-				Statement smt = connect_to_DB.ConnectDB().createStatement();
+				Connection DB_connect1 = connect_to_DB.ConnectDB();
+				Statement smt = DB_connect1.createStatement();
 		    	ResultSet rs = smt.executeQuery("SELECT * from 工作表2 WHERE Disease ='"+keyword+"'");
 		    	rs.next();
 		    	s = keyword;
 		    	drug_ch1 = rs.getString(1);
-		    	drug_ch2 = rs.getString(2);	
+		    	drug_ch2 = rs.getString(2);
 		    	drug_ch3 = rs.getString(3);	
 		    	drug_ch4 = rs.getString(6);	
 		    	drug_ch5 = rs.getString(4);
 
 		    	
-		    	System.out.println(drug_ch1);
-		    	System.out.println(drug_ch2);
-		    	System.out.println(drug_ch3);
-		    	System.out.println(drug_ch4);
-		    	System.out.println(drug_ch5);
-		    	
 		    	//非null 才加入choice
 		    	if(drug_ch1 != null){
-		    		chc.add(drug_ch1);
-		    		chc2.add(drug_ch1);
-		    		chc3.add(drug_ch1);
-		    		chc4.add(drug_ch1);
-		    		chc5.add(drug_ch1);
+		    		Add_selection1(drug_ch1);
 		    	}
 		    	
 		    	
 		    	if(drug_ch2 != null){
-		    		chc.add(drug_ch2);
-		    		chc2.add(drug_ch2);
-		    		chc3.add(drug_ch2);
-		    		chc4.add(drug_ch2);
-		    		chc5.add(drug_ch2);
+		    		Add_selection1(drug_ch2);
 		    	}
 		    	
 		    	if(drug_ch3 != null){
-		    		chc.add(drug_ch3);
-		    		chc2.add(drug_ch3);
-		    		chc3.add(drug_ch3);
-		    		chc4.add(drug_ch3);
-		    		chc5.add(drug_ch3);
+		    		Add_selection1(drug_ch3);
 		    	}
 		    	
 		    	if(drug_ch4 != null){
-		    		chc.add(drug_ch4);
-		    		chc2.add(drug_ch4);
-		    		chc3.add(drug_ch4);
-		    		chc4.add(drug_ch4);
-		    		chc5.add(drug_ch4);
+		    		Add_selection1(drug_ch4);
 		    	}
 		    	
 		    	if(drug_ch5 != null){
-		    		chc.add(drug_ch5);
-		    		chc2.add(drug_ch5);
-		    		chc3.add(drug_ch5);
-		    		chc4.add(drug_ch5);
-		    		chc5.add(drug_ch5);
+		    		Add_selection1(drug_ch5);
 		    	}
 		    	
-		    	chc.add("null");
-	    		chc2.add("null");
-	    		chc3.add("null");
-	    		chc4.add("null");
-	    		chc5.add("null");
+		    	Add_selection1("null");
 	    		
 	    			
 			} catch (SQLException e3) {
@@ -752,7 +684,26 @@ import net.ucanaccess.jdbc.JackcessOpenerInterface;
 		
     }
     
-
+    public void Add_selection0(String drug) {
+    	chc7.add(drug);
+		chc8.add(drug);
+		chc9.add(drug);
+		chc10.add(drug);
+		chc11.add(drug);
+    }
+    
+    public void Add_selection1(String drug) {
+    	chc.add(drug);
+		chc2.add(drug);
+		chc3.add(drug);
+		chc4.add(drug);
+		chc5.add(drug);
+    }
+    
+    public void Window_change() {
+    	
+    }
+    
 	@Override
 	public void itemStateChanged(ItemEvent e) {
 		// TODO Auto-generated method stub

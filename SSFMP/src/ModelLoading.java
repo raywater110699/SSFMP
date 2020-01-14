@@ -31,10 +31,10 @@ public class ModelLoading {
 	        }
 	
 	        
-		String  pathxml=System.getProperty("mydir")+"\\DrugModel4.pmml";	//pmml模型檔位置
+		String  pathxml = System.getProperty("mydir")+"\\DrugModel4.pmml";	//pmml模型檔位置
 		
 		//設定input
-		Map<String, Float>  mapF=new HashMap<String, Float>(30);
+		Map<String, Float>  mapF = new HashMap<String, Float>(30);
 		
 		//輸入值初始化
 		mapF.put("ACEI", zero);	
