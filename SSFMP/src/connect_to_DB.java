@@ -1,6 +1,19 @@
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.ArrayList;
+
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JComboBox;
+import javax.swing.JTextField;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 
 public class connect_to_DB {
 
@@ -24,5 +37,7 @@ public static Connection ConnectDB() throws SQLException {
     	Connection con = DriverManager.getConnection("jdbc:ucanaccess://"+pathxml);
     	return con;
     }
+
+
 
 }

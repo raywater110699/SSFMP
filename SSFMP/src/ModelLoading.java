@@ -167,6 +167,4 @@ public class ModelLoading {
 		return resultvalue;	//回傳預測值
 	}
 	
-	
-
 }
