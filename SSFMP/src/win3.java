@@ -18,7 +18,7 @@ public class win3 extends JFrame implements ActionListener{
 	
 	public win3(float predict) {
 		super("評估視窗"); 
-		setBounds(900, 200, 300, 200); 
+		setBounds(900, 200, 500, 200); 
 		setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE); 
 		setVisible(true); 
 		setBackground(Color.white); 
