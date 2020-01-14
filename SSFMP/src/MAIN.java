@@ -86,7 +86,13 @@ import net.ucanaccess.jdbc.JackcessOpenerInterface;
 	float ml4;
 	float ml5;
 	float predict=0;
-	String s=""; 
+	String s="";
+	static int x = 20;
+	static int y = 90;
+	static int label_width = 40;
+	static int label_height = 20;
+	static int chc_width = 120;
+	static int amount_width = 60;
 	/*-------------------------------------------------------------------------------*/
 	static TextField t =new TextField();
     static TextField t2=new TextField();
@@ -154,56 +160,56 @@ import net.ucanaccess.jdbc.JackcessOpenerInterface;
          search.addActionListener(frm);
          
          
-         d1.setBounds(20, 90, 40, 20);	//藥物1
+         d1.setBounds(x, y, label_width, label_height);	//藥物1
 	     frame.add(d1);
-	     chc.setBounds(70, 90, 120, 20);	     
+	     chc.setBounds(x+50, y, chc_width, label_height);	     
 	     frame.add(chc);
-	     amount.setBounds(200, 90, 60, 20);
+	     amount.setBounds(x+180, y, amount_width, label_height);
 	     frame.add(amount);
-	     l1.setBounds(260, 90, 40, 20);
+	     l1.setBounds(x+240, y, label_width, label_height);
 	     frame.add(l1);
 	     
-	     d2.setBounds(20, 160, 40, 20); //藥物2
+	     d2.setBounds(x, y+70, label_width, label_height); //藥物2
 	     frame.add(d2);	
-	     chc2.setBounds(70, 160, 120, 20);
+	     chc2.setBounds(x+50, y+70, chc_width, label_height);
 	     frame.add(chc2);
-	     amount2.setBounds(200, 160, 60, 20);
+	     amount2.setBounds(x+180, y+70, amount_width, label_height);
 	     frame.add(amount2);
-	     l2.setBounds(260, 160, 40, 20);
+	     l2.setBounds(x+240, y+70, label_width, label_height);
 	     frame.add(l2);
 	     	     	     
-	     d3.setBounds(20, 230, 40, 20); //藥物3
+	     d3.setBounds(x, y+140, label_width, label_height); //藥物3
 	     frame.add(d3);	
-	     chc3.setBounds(70, 230, 120, 20);
+	     chc3.setBounds(x+50, y+140, chc_width, label_height);
 	     frame.add(chc3);
-	     amount3.setBounds(200, 230, 60, 20);
+	     amount3.setBounds(x+180, y+140, amount_width, label_height);
 	     frame.add(amount3);
-	     l3.setBounds(260, 230, 40, 20);
+	     l3.setBounds(x+240, y+140, label_width, label_height);
 	     frame.add(l3);
 	     
-	     d4.setBounds(20, 300, 40, 20); //藥物4
+	     d4.setBounds(x, y+210, label_width, label_height); //藥物4
 	     frame.add(d4);	
-	     chc4.setBounds(70, 300, 120, 20);
+	     chc4.setBounds(x+50, y+210, chc_width, label_height);
 	     frame.add(chc4);
-	     amount4.setBounds(200, 300, 60, 20);
+	     amount4.setBounds(x+180, y+210, amount_width, label_height);
 	     frame.add(amount4);
-	     l4.setBounds(260, 300, 40, 20);
+	     l4.setBounds(x+240, y+210, label_width, label_height);
 	     frame.add(l4);
 	     
-	     d5.setBounds(20, 370, 40, 20); //藥物5
+	     d5.setBounds(x, y+280, label_width, label_height); //藥物5
 	     frame.add(d5);	
-	     chc5.setBounds(70, 370, 120, 20);
+	     chc5.setBounds(x+50, y+280, chc_width, label_height);
 	     frame.add(chc5);
-	     amount5.setBounds(200, 370, 60, 20);
+	     amount5.setBounds(x+180, y+280, amount_width, label_height);
 	     frame.add(amount5);
-	     l5.setBounds(260, 370, 40, 20);
+	     l5.setBounds(x+240, y+280, label_width, label_height);
 	     frame.add(l5);
 	          
-	     j2.setBounds(20, 420, 180, 55);
+	     j2.setBounds(x, 420, 180, 55);
 	     frame.add(j2);
 	     j2.addActionListener(frm);
 	     
-	     j3.setBounds(200, 420, 60, 55);
+	     j3.setBounds(x+180, 420, 60, 55);
 	     frame.add(j3);
 	     j3.addActionListener(frm);
 	     	     	          
@@ -616,7 +622,8 @@ import net.ucanaccess.jdbc.JackcessOpenerInterface;
 		if((JButton) e.getSource() == evaluation ) // 評估
 		{
 			try {		//傳值到pmml預測
-				 predict = ModelLoading.input(DRUG1,DRUG2,DRUG3,DRUG4,DRUG5,ml1,ml2,ml3,ml4,ml5);
+				 information info = new information(DRUG1,DRUG2,DRUG3,DRUG4,DRUG5,ml1,ml2,ml3,ml4,ml5);
+				 predict = ModelLoading.input(info);
 				 predict = ran.nextInt(100);
 			} catch (Exception e3) {
 				// TODO Auto-generated catch block
