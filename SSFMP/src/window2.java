@@ -1,6 +1,7 @@
 import java.awt.Container;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
@@ -28,8 +29,8 @@ public class window2 extends JFrame{
 		setVisible(true); 
 		Container pn = getContentPane(); 
 		try {
-			connect_to_DB.ConnectDB();
-			Statement smt = connect_to_DB.ConnectDB().createStatement();
+			Connection cn = connect_to_DB.ConnectDB();
+			Statement smt = cn.createStatement();
 	    	ResultSet rs = smt.executeQuery("SELECT * from 工作表1 WHERE Disease ='"+s+"'");
 	    	
 	    	Statement stmt = connect_to_DB.ConnectDB().createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE); 

@@ -55,11 +55,11 @@ import net.ucanaccess.jdbc.JackcessOpenerInterface;
 			
 	String Disease_name[] = new String [150]; //連資料庫的藥名
 	String s = "";
-	String drug_ch1;
-	String drug_ch2;
-	String drug_ch3;
-	String drug_ch4;
-	String drug_ch5;
+	static String drug_ch1;
+	static String drug_ch2;
+	static String drug_ch3;
+	static String drug_ch4;
+	static String drug_ch5;
     String keyword;
 	String DRUG1;
 	String DRUG2;
@@ -429,30 +429,30 @@ import net.ucanaccess.jdbc.JackcessOpenerInterface;
 				Statement smt0 = DB_connect0.createStatement();
 		    	ResultSet rs0 = smt0.executeQuery("SELECT * from 工作表2 WHERE Disease ='"+keyword0+"'");
 		    	rs0.next();
-		    	getDrug(rs0);
+		    	duplicate_code.getDrug(rs0);
 		    	
 		    	//非null 才加入choice
 		    	if(drug_ch1 != null){
-		    		Add_selection0(drug_ch1);
+		    		duplicate_code.Add_selection0(drug_ch1);
 		    	}
 		    	
 		    	if(drug_ch2 != null){
-		    		Add_selection0(drug_ch2);
+		    		duplicate_code.Add_selection0(drug_ch2);
 		    	}
 		    	
 		    	if(drug_ch3 != null){
-		    		Add_selection0(drug_ch3);
+		    		duplicate_code.Add_selection0(drug_ch3);
 		    	}
 		    	
 		    	if(drug_ch4 != null){
-		    		Add_selection0(drug_ch4);
+		    		duplicate_code.Add_selection0(drug_ch4);
 		    	}
 		    	
 		    	if(drug_ch5 != null){
-		    		Add_selection0(drug_ch5);
+		    		duplicate_code.Add_selection0(drug_ch5);
 		    	}
 		    	
-		    	Add_selection0("null");
+		    	duplicate_code.Add_selection0("null");
 		    	
 			} 
 			catch (SQLException e3) {
@@ -464,19 +464,19 @@ import net.ucanaccess.jdbc.JackcessOpenerInterface;
     	
 
 		if((JButton) e.getSource() == prescription ){	//按鈕進入視窗
-			Window_change(enter_frame, main_frame);
+			duplicate_code.Window_change(enter_frame, main_frame);
 	        if(advice.getText().isEmpty()==false){
 	        	advice.setText("");
 	        }
 		}
 		if((JButton) e.getSource() == DB ){  //按鈕進入視窗	
-			Window_change(enter_frame, db_frame);
+			duplicate_code.Window_change(enter_frame, db_frame);
 		}
 		if((JButton) e.getSource() == back1 ){	 //返回
-			Window_change(main_frame, enter_frame);
+			duplicate_code.Window_change(main_frame, enter_frame);
 		}
 		if((JButton) e.getSource() == db_back ){	 //返回	
-			Window_change(db_frame, enter_frame);
+			duplicate_code.Window_change(db_frame, enter_frame);
 		}
 		
 		if((JButton) e.getSource() == confirm ){	//確定
@@ -561,7 +561,7 @@ import net.ucanaccess.jdbc.JackcessOpenerInterface;
 		}
 		
 		if((JButton) e.getSource() == submit ){	  //提交
-			Window_change(main_frame, text_frame);
+			duplicate_code.Window_change(main_frame, text_frame);
 			
 			if(advice_2.getText().isEmpty() == false ){   //判斷是否為空值 有東西的話先清空
 	    	   advice_2.setText(""); 
@@ -578,7 +578,7 @@ import net.ucanaccess.jdbc.JackcessOpenerInterface;
 		}
 		
 		if((JButton) e.getSource()== submit_return){   //提交頁面返回
-			Window_change(text_frame, enter_frame);
+			duplicate_code.Window_change(text_frame, enter_frame);
 		}
 		
 		if((JButton) e.getSource() == search){   // 搜尋 
@@ -602,31 +602,31 @@ import net.ucanaccess.jdbc.JackcessOpenerInterface;
 		    	ResultSet rs = smt.executeQuery("SELECT * from 工作表2 WHERE Disease ='"+keyword+"'");
 		    	rs.next();
 		    	s = keyword;
-		    	getDrug(rs);
+		    	duplicate_code.getDrug(rs);
 
 		    	
 		    	//非null 才加入choice
 		    	if(drug_ch1 != null){
-		    		Add_selection1(drug_ch1);
+		    		duplicate_code.Add_selection1(drug_ch1);
 		    	}
 		 
 		    	if(drug_ch2 != null){
-		    		Add_selection1(drug_ch2);
+		    		duplicate_code.Add_selection1(drug_ch2);
 		    	}
 		    	
 		    	if(drug_ch3 != null){
-		    		Add_selection1(drug_ch3);
+		    		duplicate_code.Add_selection1(drug_ch3);
 		    	}
 		    	
 		    	if(drug_ch4 != null){
-		    		Add_selection1(drug_ch4);
+		    		duplicate_code.Add_selection1(drug_ch4);
 		    	}
 		    	
 		    	if(drug_ch5 != null){
-		    		Add_selection1(drug_ch5);
+		    		duplicate_code.Add_selection1(drug_ch5);
 		    	}
 		    	
-		    	Add_selection1("null");
+		    	duplicate_code.Add_selection1("null");
 	    		
 	    			
 			} catch (SQLException e3) {
@@ -642,39 +642,6 @@ import net.ucanaccess.jdbc.JackcessOpenerInterface;
 		}
 		
 		
-    }
-    
-    public void Add_selection0(String drug) {	//增加藥物選項
-    	chc7.add(drug);
-		chc8.add(drug);
-		chc9.add(drug);
-		chc10.add(drug);
-		chc11.add(drug);
-    }
-    
-    public void Add_selection1(String drug) {
-    	chc.add(drug);
-		chc2.add(drug);
-		chc3.add(drug);
-		chc4.add(drug);
-		chc5.add(drug);
-    }
-    
-    public void Window_change(JPanel original_frame, JPanel change_frame) {		//切換視窗
-    	frm.remove(original_frame);
-		frm.add(change_frame);
-		frm.revalidate();
-		frm.repaint();
-		change_frame.setVisible(true);  
-        frm.setVisible(true); 
-    }
-    
-    public void getDrug(ResultSet RS) throws SQLException {		//獲得藥物string
-    	drug_ch1 = RS.getString(1);
-    	drug_ch2 = RS.getString(2);
-    	drug_ch3 = RS.getString(3);	
-    	drug_ch4 = RS.getString(6);	
-    	drug_ch5 = RS.getString(4);
     }
     
 	@Override
