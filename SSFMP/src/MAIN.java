@@ -66,27 +66,27 @@ import net.ucanaccess.jdbc.JackcessOpenerInterface;
 			
 	static JButton j3= new JButton("確定"); //提交
 	
-	static String Disease_name[] = new String [150]; //連資料庫的藥名
-	static String drug_ch1;
-	static String drug_ch2;
-	static String drug_ch3;
-	static String drug_ch4;
-	static String drug_ch5;
+	String Disease_name[] = new String [150]; //連資料庫的藥名
+	String drug_ch1;
+	String drug_ch2;
+	String drug_ch3;
+	String drug_ch4;
+	String drug_ch5;
 	
-	static String keyword;
+    String keyword;
 		
-	static String DRUG1;
-	static String DRUG2;
-	static String DRUG3;
-	static String DRUG4;
-	static String DRUG5;
-	static float ml1;
-	static float ml2;
-	static float ml3;
-	static float ml4;
-	static float ml5;
-	static float predict=0;
-	static String s=""; 
+	String DRUG1;
+	String DRUG2;
+	String DRUG3;
+	String DRUG4;
+	String DRUG5;
+	float ml1;
+	float ml2;
+	float ml3;
+	float ml4;
+	float ml5;
+	float predict=0;
+	String s=""; 
 	/*-------------------------------------------------------------------------------*/
 	static TextField t =new TextField();
     static TextField t2=new TextField();

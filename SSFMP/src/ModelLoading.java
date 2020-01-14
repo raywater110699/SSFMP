@@ -155,11 +155,11 @@ public class ModelLoading {
 		mapF.put("Safetypercent", zero);
 		
 		//接收值導入
-		mapF.put(drug1, (float) ml1);
-		mapF.put(drug2, (float) ml2);
-		mapF.put(drug3, (float) ml3);
-		mapF.put(drug4, (float) ml4);
-		mapF.put(drug5, (float) ml5);
+		mapF.put(drug1, ml1);
+		mapF.put(drug2, ml2);
+		mapF.put(drug3, ml3);
+		mapF.put(drug4, ml4);
+		mapF.put(drug5, ml5);
 		
 		float resultvalue = predict_model.predict(mapF,pathxml);	//導入模型訓練
 		return resultvalue;	//回傳預測值
