@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <class-diagram version="1.2.3" icons="true" always-add-relationships="false" generalizations="true" realizations="true" 
   associations="true" dependencies="false" nesting-relationships="true" router="FAN">  
-  <class id="1" language="java" name="MAIN" project="SSFMP" file="/SSFMP/src/MAIN.java" binary="false" 
-    corner="BOTTOM_RIGHT">    
+  <class id="1" language="java" name="UI" project="SSFMP" file="/SSFMP/src/UI.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="826" width="338" x="108" y="-113"/>    
     <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -28,7 +27,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="4" language="java" name="win2" project="SSFMP" file="/SSFMP/src/win2.java" binary="false" 
+  <class id="4" language="java" name="window2" project="SSFMP" file="/SSFMP/src/window2.java" binary="false" 
     corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="860" y="-17"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -37,7 +36,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="5" language="java" name="win3" project="SSFMP" file="/SSFMP/src/win3.java" binary="false" 
+  <class id="5" language="java" name="window3" project="SSFMP" file="/SSFMP/src/window3.java" binary="false" 
     corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="890" y="622"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -48,31 +47,35 @@
   </class>  
   <dependency id="6">    
     <end type="SOURCE" refId="1"/>    
-    <end type="TARGET" refId="4"/>  
+    <end type="TARGET" refId="3"/>  
   </dependency>  
   <dependency id="7">    
     <end type="SOURCE" refId="1"/>    
-    <end type="TARGET" refId="2"/>  
+    <end type="TARGET" refId="4"/>  
   </dependency>  
-  <dependency id="8">    
-    <end type="SOURCE" refId="1"/>    
-    <end type="TARGET" refId="3"/>  
-  </dependency>  
-  <dependency id="9">    
-    <end type="SOURCE" refId="1"/>    
-    <end type="TARGET" refId="5"/>  
-  </dependency>  
-  <association id="10">    
+  <association id="8">    
     <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="11" name="frm"/>      
-      <multiplicity id="12" minimum="0" maximum="1"/>    
+      <attribute id="9" name="frm">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="10" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
     </end>    
     <end type="TARGET" refId="1" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <dependency id="13">    
+  <dependency id="11">    
     <end type="SOURCE" refId="4"/>    
     <end type="TARGET" refId="2"/>  
+  </dependency>  
+  <dependency id="12">    
+    <end type="SOURCE" refId="1"/>    
+    <end type="TARGET" refId="2"/>  
+  </dependency>  
+  <dependency id="13">    
+    <end type="SOURCE" refId="1"/>    
+    <end type="TARGET" refId="5"/>  
   </dependency>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
     sort-features="false" accessors="true" visibility="true">    
