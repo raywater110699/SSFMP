@@ -26,17 +26,17 @@ public class ModelLoading {
 	public static float input(String drug1,String drug2,String drug3,String drug4,String drug5,float ml1,float ml2,float ml3,float ml4,float ml5) throws Exception{
 		// TODO Auto-generated method stub
 		
-		
+		//動態配置檔案位置
 	        String path = System.getProperty("mydir");
 	        if(path == null){
 	            System.setProperty("mydir", System.getProperty("user.dir"));
 	        }
 	        //System.out.print(System.getProperty("mydir"));
 	        
-		String  pathxml=System.getProperty("mydir")+"\\DrugModel4.pmml";	
+		String  pathxml=System.getProperty("mydir")+"\\DrugModel4.pmml";	//pmml模型檔位置
 		//System.out.println(pathxml);
 		
-		
+		//設定input
 		//Map<String, Double>  mapD=new HashMap<String, Double>();
 		
 		/*
@@ -49,7 +49,7 @@ public class ModelLoading {
 		
 		Map<String, Float>  mapF=new HashMap<String, Float>(1000);
 		
-		
+		//輸入值初始化
 		mapF.put("ACEI", (float) 0);
 		mapF.put("ARB", (float) 0);
 		mapF.put("Statins", (float) 0);
@@ -166,22 +166,22 @@ public class ModelLoading {
 		mapF.put("Cisplatinum?", (float) 0);
 		mapF.put("Safetypercent", (float) 0);
 		
-		��
+		//接收值導入
 		mapF.put(drug1, (float) ml1);
 		mapF.put(drug2, (float) ml2);
 		mapF.put(drug3, (float) ml3);
 		mapF.put(drug4, (float) ml4);
 		mapF.put(drug5, (float) ml5);
 		
-		float resultvalue = predict(mapF,pathxml);	
-		return resultvalue;	
+		float resultvalue = predict(mapF,pathxml);	//導入模型訓練
+		return resultvalue;	//回傳預測值
 	}
 	
 	public static float predict(Map<String, Float> DRUGmap,String  pathxml)throws Exception {
-		
+		//模型導入
 		PMML pmml;		
 		File file = new File(pathxml);
-		float primitiveValue = -1;
+		float primitiveValue = -1;	//result值
 		
 		InputStream inputStream = new FileInputStream(file);
 		try (InputStream is = inputStream) {
@@ -189,15 +189,15 @@ public class ModelLoading {
 			ModelEvaluatorFactory modelEvaluatorFactory = ModelEvaluatorFactory.newInstance();
 			ModelEvaluator<?> modelEvaluator = modelEvaluatorFactory.newModelEvaluator(pmml);
 			Evaluator evaluator = (Evaluator) modelEvaluator;
-			List<InputField> inputFields = evaluator.getInputFields();		
+			List<InputField> inputFields = evaluator.getInputFields();		//從map中抓數據
 			
 			Map<FieldName, FieldValue> arguments = new LinkedHashMap<>();
 			
 			for (InputField inputField : inputFields) {
 				FieldName inputFieldName = inputField.getName();
 				
-				//Object SAFETYrawValue = SAFETYmap.get(inputFieldName.getValue());	
-				Object DRUGrawValue = DRUGmap.get(inputFieldName.getValue());
+				//Object SAFETYrawValue = SAFETYmap.get(inputFieldName.getValue());	//抓安全率資料
+				Object DRUGrawValue = DRUGmap.get(inputFieldName.getValue());	//抓藥物資料
 				
 				//FieldValue SAFETYinputFieldValue = inputField.prepare(SAFETYrawValue);
 				FieldValue DRUGinputFieldValue = inputField.prepare(DRUGrawValue);
@@ -210,7 +210,7 @@ public class ModelLoading {
 			Map<FieldName, ?> results = evaluator.evaluate(arguments);
 			List<TargetField> targetFields = evaluator.getTargetFields();
 			
-		��
+			//輸出
 			for (TargetField targetField : targetFields) {
 				FieldName targetFieldName = targetField.getName();
 				Object targetFieldValue = results.get(targetFieldName);
