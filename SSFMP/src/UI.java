@@ -20,74 +20,60 @@ import net.ucanaccess.jdbc.JackcessOpenerInterface;
 	private static final long serialVersionUID = -3781841269916429345L;
 
 	static UI frm = new UI();
-	static JPanel enter_frame = new JPanel();//進入畫面
-	static JPanel main_frame = new JPanel();//輸入和查詢主系統介面
-	static JPanel text_frame = new JPanel();//提交後頁面
+	static JPanel enter_frame = new JPanel(); //進入畫面
+	static JPanel main_frame = new JPanel(); //輸入和查詢主系統介面
+	static JPanel text_frame = new JPanel(); //提交後頁面
+	
 	static JButton prescription = new JButton("處方箋");
 	static JButton DB = new JButton("資料庫");
 	static JButton search = new JButton("搜尋");
-	static JTextField txtInput = new JTextField();//輸入欄
-	static TextArea advice = new TextArea(""); //右半文字目前藥單
-	static JButton evaluation = new JButton("評估");//評估
+	static JButton evaluation = new JButton("評估");
 	static JButton submit = new JButton("提交");
-	static TextArea advice_2 = new TextArea(""); //提交後頁面用
-	static JButton submit_return = new JButton("返回首頁");
-	
- 
-	static JButton back1 = new JButton("返回");//主系統返回首頁
-	static JButton suggest= new JButton("疾病建議用藥組合"); //左下按鈕
+	static JButton back1 = new JButton("返回"); //主系統返回首頁
+	static JButton suggest= new JButton("疾病建議用藥組合");
 	static JButton modify = new JButton("修改"); 
+	static JButton submit_return = new JButton("返回首頁");
+	static JButton confirm = new JButton("確定"); //提交
 	
+	static JTextField txtInput = new JTextField(); //輸入欄
+	
+	static TextArea advice = new TextArea(""); //右半文字目前藥單
+	static TextArea advice_2 = new TextArea(""); //提交後頁面用
+
 	static TextField amount = new TextField(); //藥物1藥量
 	static TextField amount2 = new TextField(); 
 	static TextField amount3 = new TextField();
 	static TextField amount4 = new TextField();
 	static TextField amount5 = new TextField();
 	
-	static TextField amount6 = new TextField(); //藥物1藥量(資料庫)
-	static TextField amount7 = new TextField(); 
-	static TextField amount8 = new TextField(); 
-	static TextField amount9 = new TextField();
-	static TextField amount10 = new TextField();
-	static TextField amount11 = new TextField();
-	
-	static Choice chc = new Choice();
+	static Choice chc = new Choice(); //下拉選項
     static Choice chc2 = new Choice(); 
     static Choice chc3 = new Choice();  
     static Choice chc4 = new Choice();
     static Choice chc5 = new Choice();
-    
-    static Choice chc7 = new Choice();
-    static Choice chc8 = new Choice(); 
-    static Choice chc9 = new Choice();  
-    static Choice chc10 = new Choice();
-    static Choice chc11 = new Choice();
-    
-    static Choice chc6 = new Choice();//修改
+    static Choice chc6 = new Choice(); //修改
 			
-	static JButton confirm = new JButton("確定"); //提交
-	
 	String Disease_name[] = new String [150]; //連資料庫的藥名
+	String s = "";
 	String drug_ch1;
 	String drug_ch2;
 	String drug_ch3;
 	String drug_ch4;
 	String drug_ch5;
-	
     String keyword;
-		
 	String DRUG1;
 	String DRUG2;
 	String DRUG3;
 	String DRUG4;
 	String DRUG5;
+	
 	float ml1;
 	float ml2;
 	float ml3;
 	float ml4;
 	float ml5;
 	float predict=0;
-	String s = "";
+
 	static int label_x = 20;
 	static int label_y = 90;
 	static int label_width = 40;
@@ -99,18 +85,38 @@ import net.ucanaccess.jdbc.JackcessOpenerInterface;
 	static int DB_label_width = 80;
 	static int DB_label_height = 20;
 	/*-------------------------------------------------------------------------------*/
+	//DB
 	static TextField disease =new TextField();
     static TextField disease_code=new TextField();
-	static JPanel db_frame = new JPanel();			//資料庫頁面
-	static JButton db_back = new JButton("返回");	//資料庫返回首頁
-	static JButton add = new JButton("新增");  		//資料庫新增一筆資料 
-	static JButton delete = new JButton("刪除"); 	//資料庫刪除一筆資料 
-	static JButton search1 = new JButton("查詢");	//資料庫查詢一筆資料 
+    static TextField DB_search = new TextField(); //資料庫搜尋欄
+    
+	static JPanel db_frame = new JPanel(); //資料庫頁面
+	
+	static JButton db_back = new JButton("返回"); //資料庫返回首頁
+	static JButton add = new JButton("新增");
+	static JButton delete = new JButton("刪除");
+	static JButton search1 = new JButton("查詢");
 	static JButton enter  = new JButton("確定");
+	
 	static JTable  jt = new JTable();
-	static TextField DB_search = new TextField();		//資料庫搜尋欄
+	
 	static String keyword0;
+	
 	static Random ran = new Random();
+	
+	static TextField amount6 = new TextField(); //藥物1藥量(資料庫)
+	static TextField amount7 = new TextField(); 
+	static TextField amount8 = new TextField(); 
+	static TextField amount9 = new TextField();
+	static TextField amount10 = new TextField();
+	static TextField amount11 = new TextField();
+	
+	static Choice chc7 = new Choice(); //下拉選項(資料庫)
+    static Choice chc8 = new Choice(); 
+    static Choice chc9 = new Choice();  
+    static Choice chc10 = new Choice();
+    static Choice chc11 = new Choice();
+    
 	
     public static void main(String[] args) throws Exception, SQLException, IOException {
     	
@@ -149,6 +155,7 @@ import net.ucanaccess.jdbc.JackcessOpenerInterface;
          JLabel d3 = new JLabel("藥物3");
          JLabel d4 = new JLabel("藥物4");
          JLabel d5 = new JLabel("藥物5");
+         JLabel now = new JLabel("目前藥單");
          
          Label l1 = new Label("mg");
          Label l2 = new Label("mg");
@@ -167,35 +174,17 @@ import net.ucanaccess.jdbc.JackcessOpenerInterface;
          d4.setBounds(label_x, label_y+210, label_width, label_height); //藥物4
          d5.setBounds(label_x, label_y+280, label_width, label_height); //藥物5
          
-         main_frame.add(d1);
-         main_frame.add(d2);
-         main_frame.add(d3);
-         main_frame.add(d4);	
-         main_frame.add(d5);	
-         
-	     chc.setBounds(label_x+50, label_y, chc_width, label_height);	 
+         chc.setBounds(label_x+50, label_y, chc_width, label_height);	 
 	     chc2.setBounds(label_x+50, label_y+70, chc_width, label_height);
 	     chc3.setBounds(label_x+50, label_y+140, chc_width, label_height);
 	     chc4.setBounds(label_x+50, label_y+210, chc_width, label_height);
 	     chc5.setBounds(label_x+50, label_y+280, chc_width, label_height);
-	     
-	     main_frame.add(chc);
-	     main_frame.add(chc2);
-	     main_frame.add(chc3);
-	     main_frame.add(chc4);
-	     main_frame.add(chc5);
-	     
 	     amount.setBounds(label_x+180, label_y, amount_width, label_height);
+	     
 	     amount2.setBounds(label_x+180, label_y+70, amount_width, label_height);
 	     amount3.setBounds(label_x+180, label_y+140, amount_width, label_height);
 	     amount4.setBounds(label_x+180, label_y+210, amount_width, label_height);
 	     amount5.setBounds(label_x+180, label_y+280, amount_width, label_height);
-	     
-	     main_frame.add(amount);
-	     main_frame.add(amount2);
-	     main_frame.add(amount3);
-	     main_frame.add(amount4);
-	     main_frame.add(amount5);
 	     
 	     l1.setBounds(label_x+240, label_y, label_width, label_height);
 	     l2.setBounds(label_x+240, label_y+70, label_width, label_height);
@@ -203,50 +192,60 @@ import net.ucanaccess.jdbc.JackcessOpenerInterface;
 	     l4.setBounds(label_x+240, label_y+210, label_width, label_height);
 	     l5.setBounds(label_x+240, label_y+280, label_width, label_height);
 	     
+	     suggest.setBounds(label_x, 420, 180, 55);
+	     confirm .setBounds(label_x+180, 420, 60, 55);
+	     advice.setBounds(300, 60, 360, 350);
+	     modify.setBounds(560, 12, 100, 45);
+	     evaluation.setBounds(310, 430, 110, 50);
+	     submit.setBounds(430, 430, 110, 50);
+	     back1.setBounds(550, 430, 110, 50); //返回
+	     now.setBounds(300, 20, 80, 20);
+	     
+	     suggest.addActionListener(frm);
+	     confirm .addActionListener(frm);
+	     modify.addActionListener(frm);
+	     evaluation.addActionListener(frm);
+	     submit.addActionListener(frm);
+	     back1.addActionListener(frm);
+	     
+         main_frame.add(d1);
+         main_frame.add(d2);
+         main_frame.add(d3);
+         main_frame.add(d4);	
+         main_frame.add(d5);
+         
+	     main_frame.add(chc);
+	     main_frame.add(chc2);
+	     main_frame.add(chc3);
+	     main_frame.add(chc4);
+	     main_frame.add(chc5);
+	     
+	     main_frame.add(amount);
+	     main_frame.add(amount2);
+	     main_frame.add(amount3);
+	     main_frame.add(amount4);
+	     main_frame.add(amount5);
+	     
 	     main_frame.add(l1);
 	     main_frame.add(l2);
 	     main_frame.add(l3);
 	     main_frame.add(l4);
 	     main_frame.add(l5);
-	          
 	     
-	     suggest.setBounds(label_x, 420, 180, 55);
 	     main_frame.add(suggest);
-	     suggest.addActionListener(frm);
-	     
-	     confirm .setBounds(label_x+180, 420, 60, 55);
-	     main_frame.add(confirm );
-	     confirm .addActionListener(frm);
-	     	     	          
-	     advice.setBounds(300, 60, 360, 350);
-	     advice.setEditable(false);
-	     advice.setVisible(true);
+	     main_frame.add(confirm);
 	     main_frame.add(advice);
-	     	     
-	     JLabel now = new JLabel("目前藥單");
-	     now.setBounds(300, 20, 80, 20);
+	     main_frame.add(modify); 
+	     main_frame.add(evaluation);
+	     main_frame.add(submit);
+	     main_frame.add(back1);
 	     main_frame.add(now);
 	     
-	          
-	     modify.setBounds(560, 12, 100, 45);
-	     modify.addActionListener(frm);
-	     main_frame.add(modify); 
-	     
-	     
-	     evaluation.setBounds(310, 430, 110, 50);
-	     evaluation.addActionListener(frm);
-	     main_frame.add(evaluation);
-	     
-	     
-	     submit.setBounds(430, 430, 110, 50);
-	     submit.addActionListener(frm);
-	     main_frame.add(submit);	
-	     
-	     back1.setBounds(550, 430, 110, 50); //返回
-	     main_frame.add(back1);
-	     back1.addActionListener(frm);
-	     
-	     	     	     
+   
+	     advice.setEditable(false);
+	     advice.setVisible(true);
+	      	 
+	   	     	     
 	     //進入畫面介面
 	     ImageIcon icon = new ImageIcon("first.png");
          Image image = icon.getImage();
@@ -271,65 +270,80 @@ import net.ucanaccess.jdbc.JackcessOpenerInterface;
          Label l10 = new Label("mg");
 
          
-         db_frame.add(DIS);
-         db_frame.add(disease);
+         db_frame.add(DIS);         
          db_frame.add(DISCODE);
-         db_frame.add(disease_code);
+         
          db_frame.add(d6);
          db_frame.add(d7);
          db_frame.add(d8);
          db_frame.add(d9);
          db_frame.add(d10);
-         db_frame.add(amount6);
-         db_frame.add(amount7);
-         db_frame.add(amount8);
-         db_frame.add(amount9);
-         db_frame.add(amount10);
+         
          db_frame.add(l6);
          db_frame.add(l7);
          db_frame.add(l8);
          db_frame.add(l9);
          db_frame.add(l10);
          
-         DIS.setBounds(DB_label_x, DB_label_y, DB_label_width, DB_label_height); //疾病
-         disease.setBounds(DB_label_x+90, DB_label_y, DB_label_width, DB_label_height);
-         DISCODE.setBounds(DB_label_x, DB_label_y+40, DB_label_width, DB_label_height); //疾病碼
-         disease_code.setBounds(DB_label_x+90, DB_label_y+40, DB_label_width, DB_label_height);
+         db_frame.add(disease);
+         db_frame.add(disease_code);
          
-    
+         db_frame.add(amount6);
+         db_frame.add(amount7);
+         db_frame.add(amount8);
+         db_frame.add(amount9);
+         db_frame.add(amount10);
+         
+         DIS.setBounds(DB_label_x, DB_label_y, DB_label_width, DB_label_height); //疾病
+         DISCODE.setBounds(DB_label_x, DB_label_y+40, DB_label_width, DB_label_height); //疾病碼
+         
          d6.setBounds(DB_label_x, DB_label_y+95, DB_label_width, DB_label_height);	//藥物1
          d7.setBounds(DB_label_x, DB_label_y+125, DB_label_width, DB_label_height); //藥物2
          d8.setBounds(DB_label_x, DB_label_y+155, DB_label_width, DB_label_height); //藥物3
          d9.setBounds(DB_label_x, DB_label_y+185, DB_label_width, DB_label_height); //藥物4
          d10.setBounds(DB_label_x, DB_label_y+215, DB_label_width, DB_label_height); //藥物5
          
-         chc6.setBounds(400, 20, 120, 20);
-         chc7.setBounds(DB_label_x+90, DB_label_y+95, DB_label_width, DB_label_height);
-         chc8.setBounds(DB_label_x+90, DB_label_y+125, DB_label_width, DB_label_height);
-         chc9.setBounds(DB_label_x+90, DB_label_y+155, DB_label_width, DB_label_height);
-         chc10.setBounds(DB_label_x+90, DB_label_y+185, DB_label_width, DB_label_height);
-         
-	     amount6.setBounds(DB_label_x+190, DB_label_y+95, DB_label_width, DB_label_height);
-	     amount7.setBounds(DB_label_x+190, DB_label_y+125, DB_label_width, DB_label_height);
-	     amount8.setBounds(DB_label_x+190, DB_label_y+155, DB_label_width, DB_label_height);
-	     amount9.setBounds(DB_label_x+190, DB_label_y+185, DB_label_width, DB_label_height);
-	     amount10.setBounds(DB_label_x+190, DB_label_y+215, DB_label_width, DB_label_height);
-	     
-	     l6.setBounds(DB_label_x+290, DB_label_y+95, DB_label_width, DB_label_height);
+         l6.setBounds(DB_label_x+290, DB_label_y+95, DB_label_width, DB_label_height);
 	     l7.setBounds(DB_label_x+290, DB_label_y+125, DB_label_width, DB_label_height);
 	     l8.setBounds(DB_label_x+290, DB_label_y+155, DB_label_width, DB_label_height);
 	     l9.setBounds(DB_label_x+290, DB_label_y+185, DB_label_width, DB_label_height);
 	     l10.setBounds(DB_label_x+290, DB_label_y+215, DB_label_width, DB_label_height);
 	     
-	     chc11.setBounds(DB_label_x+90, DB_label_y+215, DB_label_width, DB_label_height);
+         disease.setBounds(DB_label_x+90, DB_label_y, DB_label_width, DB_label_height);
+         disease_code.setBounds(DB_label_x+90, DB_label_y+40, DB_label_width, DB_label_height);
+         
+         amount6.setBounds(DB_label_x+190, DB_label_y+95, DB_label_width, DB_label_height);
+	     amount7.setBounds(DB_label_x+190, DB_label_y+125, DB_label_width, DB_label_height);
+	     amount8.setBounds(DB_label_x+190, DB_label_y+155, DB_label_width, DB_label_height);
+	     amount9.setBounds(DB_label_x+190, DB_label_y+185, DB_label_width, DB_label_height);
+	     amount10.setBounds(DB_label_x+190, DB_label_y+215, DB_label_width, DB_label_height);
 	     amount11.setBounds(DB_label_x+190, DB_label_y+245, DB_label_width, DB_label_height);
 	     
-	    
+	     chc6.setBounds(400, 20, 120, 20);
+         chc7.setBounds(DB_label_x+90, DB_label_y+95, DB_label_width, DB_label_height);
+         chc8.setBounds(DB_label_x+90, DB_label_y+125, DB_label_width, DB_label_height);
+         chc9.setBounds(DB_label_x+90, DB_label_y+155, DB_label_width, DB_label_height);
+         chc10.setBounds(DB_label_x+90, DB_label_y+185, DB_label_width, DB_label_height);
+	     chc11.setBounds(DB_label_x+90, DB_label_y+215, DB_label_width, DB_label_height);
+	     
 	     db_frame.add(chc7);
 	     db_frame.add(chc8);
 	     db_frame.add(chc9);
 	     db_frame.add(chc10);
 	     db_frame.add(chc11);
+	    
+	     jt.setBounds(100, 300, 500, 300);
+	     add.setBounds(450, 20, 185, 60);
+	     delete.setBounds(450, 100, 185, 60);
+         search1.setBounds(240, 20, 80, 60);
+         enter.setBounds(450, 170, 80, 80); //確定
+         db_back.setBounds(555, 170, 80, 80); //返回
+         
+         db_back.addActionListener(frm);
+         add.addActionListener(frm);
+         delete.addActionListener(frm);
+         search1.addActionListener(frm);
+         enter.addActionListener(frm);
 	     
 	     db_frame.setLayout(null);
          db_frame.add(add);
@@ -337,18 +351,8 @@ import net.ucanaccess.jdbc.JackcessOpenerInterface;
          db_frame.add(search1);
          db_frame.add(jt);
          db_frame.add(enter);
-         jt.setBounds(100, 300, 500, 300);
-         add.setBounds(450, 20, 185, 60);
-         delete.setBounds(450, 100, 185, 60);
-         search1.setBounds(240, 20, 80, 60);
-         enter.setBounds(450, 170, 80, 80); //確定
-         db_back.setBounds(555, 170, 80, 80); //返回
-         db_back.addActionListener(frm);
-         add.addActionListener(frm);
-         delete.addActionListener(frm);
-         search1.addActionListener(frm);
-         enter.addActionListener(frm);
          
+      
          //設定顏色
          prescription.setBackground(Color.white); 
          DB.setBackground(Color.white); 
@@ -671,10 +675,6 @@ import net.ucanaccess.jdbc.JackcessOpenerInterface;
     	drug_ch3 = RS.getString(3);	
     	drug_ch4 = RS.getString(6);	
     	drug_ch5 = RS.getString(4);
-    }
-    
-    public void Clean() {
-    	
     }
     
 	@Override
